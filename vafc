@@ -1,0 +1,409 @@
+<html><head><base href="/" /><meta charset="UTF-8" /><title>Actus VAFC</title>
+<style>
+:root {
+  --primary: #e53935;
+  --accent: #c62828;
+  --background: #ffffff;
+  --text: #212121;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  margin: 10px 0;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.soccer-ball {
+  font-size: 1.2em;
+  animation: bounce 1s infinite alternate ease-in-out;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+.news-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(229, 57, 53, 0.08);
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.news-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  animation: shimmer 2s infinite linear;
+}
+
+.article {
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+  transform-origin: center;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.8s ease-out;
+  border-left: 3px solid #e0e0e0;
+}
+
+.article.coach-highlight {
+  border: 2px solid var(--primary);
+  background: #fafafa;
+  animation: highlight 2s infinite;
+}
+
+@keyframes highlight {
+  0% { box-shadow: 0 0 5px rgba(229, 57, 53, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(229, 57, 53, 0.3); }
+  100% { box-shadow: 0 0 5px rgba(229, 57, 53, 0.2); }
+}
+
+.article:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 8px 25px rgba(229, 57, 53, 0.1);
+}
+
+.article h2 {
+  color: var(--primary);
+  margin: 0 0 15px 0;
+  font-size: 1.8em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.article-link {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.article-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.article-link:hover::after {
+  width: 100%;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2em;
+  color: var(--primary);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.error-message {
+  color: var(--accent);
+  text-align: center;
+  padding: 30px;
+  font-style: italic;
+}
+
+#refreshButton {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  font-size: 1.1em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(229, 57, 53, 0.15);
+  display: block;
+  margin: 0 auto 30px;
+}
+
+#refreshButton:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 57, 53, 0.2);
+}
+
+.publication-date {
+  color: #757575;
+  font-style: italic;
+  margin-top: 15px;
+  display: block;
+}
+
+.article p {
+  color: #424242;
+  line-height: 1.8;
+  margin: 15px 0;
+}
+
+#lastUpdate {
+  text-align: center;
+  color: #757575;
+  font-style: italic;
+  margin: 10px 0;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.coach-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  margin-left: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+.article-preview {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f5f5f5;
+  padding: 15px;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.preview-content {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #424242;
+}
+
+.preview-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  color: #757575;
+  font-size: 0.9em;
+}
+
+.preview-favicon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1><span class="soccer-ball">⚽</span> Actus VAFC <span class="soccer-ball">⚽</span></h1>
+</div>
+<div class="news-container">
+  <button id="refreshButton">Actualiser</button>
+  <div id="lastUpdate"></div>
+  <div id="newsContent">
+    <div class="loading">Chargement des actualités...</div>
+  </div>
+</div>
+
+<script>
+const RSS_URL = 'https://www.google.fr/alerts/feeds/01801716343560939801/12152412055204705592';
+const PROXY_URL = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+function updateLastRefresh() {
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  document.getElementById('lastUpdate').innerHTML = `Dernière actualisation : ${formattedDate}`;
+}
+
+function checkForCoachContent(text) {
+  const coachKeywords = ['entraineur', 'entraîneur', 'coach'];
+  return coachKeywords.some(keyword => text.toLowerCase().includes(keyword));
+}
+
+// Modified fetchPagePreview function to follow redirects
+async function fetchPagePreview(url) {
+  try {
+    // First get the final URL after Google redirect
+    const googleResponse = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+    const googleData = await googleResponse.json();
+    const parser = new DOMParser();
+    const googleDoc = parser.parseFromString(googleData.contents, 'text/html');
+    
+    // Find the actual redirect URL from Google's page
+    const redirectUrl = googleDoc.querySelector('a')?.href || url;
+    
+    // Now fetch the actual article page
+    const articleResponse = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(redirectUrl)}`);
+    const articleData = await articleResponse.json();
+    const articleDoc = parser.parseFromString(articleData.contents, 'text/html');
+    
+    const metaImage = articleDoc.querySelector('meta[property="og:image"]')?.content 
+                  || articleDoc.querySelector('meta[name="twitter:image"]')?.content;
+    const favicon = `https://www.google.com/s2/favicons?domain=${new URL(redirectUrl).hostname}`;
+    const description = articleDoc.querySelector('meta[name="description"]')?.content 
+                    || articleDoc.querySelector('meta[property="og:description"]')?.content;
+    
+    return {
+      image: metaImage,
+      favicon: favicon,
+      description: description,
+      finalUrl: redirectUrl
+    };
+  } catch (error) {
+    console.error('Error fetching preview:', error);
+    return null;
+  }
+}
+
+async function fetchNews() {
+  const newsContent = document.getElementById('newsContent');
+  newsContent.innerHTML = '<div class="loading">Chargement des actualités...</div>';
+
+  try {
+    const response = await fetch(PROXY_URL + encodeURIComponent(RSS_URL));
+    const data = await response.json();
+    
+    if (data.status === 'ok') {
+      newsContent.innerHTML = '';
+      
+      for (const item of data.items) {
+        const hasCoachContent = checkForCoachContent(item.title) || checkForCoachContent(item.description);
+        const article = document.createElement('div');
+        article.className = `article${hasCoachContent ? ' coach-highlight' : ''}`;
+        
+        let title = item.title;
+        if (hasCoachContent) {
+          title += ' <span class="coach-badge">Info Entraîneur</span>';
+        }
+
+        const preview = await fetchPagePreview(item.link);
+        const previewHTML = preview ? `
+          <div class="article-preview">
+            ${preview.image ? `<img class="preview-image" src="${preview.image}" alt="Article preview image">` : ''}
+            <div class="preview-content">${preview.description || ''}</div>
+            <div class="preview-meta">
+              <img class="preview-favicon" src="${preview.favicon}" alt="Site favicon">
+              ${preview.finalUrl ? new URL(preview.finalUrl).hostname : new URL(item.link).hostname}
+            </div>
+          </div>
+        ` : '';
+
+        article.innerHTML = `
+          <h2>
+            <a class="article-link" href="${preview?.finalUrl || item.link}" target="_blank" rel="noopener">
+              ${title}
+            </a>
+          </h2>
+          <p>${item.description}</p>
+          ${previewHTML}
+          <span class="publication-date">Publié le: ${new Date(item.pubDate).toLocaleDateString('fr-FR', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          })}</span>
+        `;
+        newsContent.appendChild(article);
+
+        if (hasCoachContent) {
+          if (Notification.permission === "granted") {
+            new Notification("Nouvelle info entraîneur VAFC", {
+              body: item.title,
+              icon: "⚽"
+            });
+          } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(permission => {
+              if (permission === "granted") {
+                new Notification("Nouvelle info entraîneur VAFC", {
+                  body: item.title,
+                  icon: "⚽"
+                });
+              }
+            });
+          }
+        }
+      }
+      updateLastRefresh();
+    } else {
+      throw new Error('Erreur lors du chargement du flux RSS');
+    }
+  } catch (error) {
+    newsContent.innerHTML = `
+      <div class="error-message">
+        Une erreur est survenue lors du chargement des actualités.<br>
+        ${error.message}
+      </div>
+    `;
+  }
+}
+
+document.getElementById('refreshButton').addEventListener('click', fetchNews);
+fetchNews();
+</script>
+</body></html>
