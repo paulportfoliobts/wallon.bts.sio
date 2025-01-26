@@ -133,32 +133,73 @@ body {
 }
 
 .experience-card {
-  background: white;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
   padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: all 0.5s ease;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 200%;
+  animation: smoothGradient 10s ease infinite;
+  cursor: pointer;
+}
+
+@keyframes smoothGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.1);
+  transform: rotate(-45deg);
+  z-index: 1;
 }
 
 .experience-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.experience-card h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  color: black;
 }
 
 .skills-list {
   list-style: none;
   margin-top: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .skills-list li {
   margin: 0.5rem 0;
   padding-left: 1.5rem;
   position: relative;
+  color: black;
+  transition: color 0.3s ease;
 }
 
 .skills-list li::before {
-  content: '→';
+  content: '✦';
   position: absolute;
   left: 0;
+  color: rgba(0,0,0,0.7);
+}
+
+.skills-list li:hover {
   color: #23d5ab;
 }
 
@@ -230,7 +271,7 @@ body {
 <main class="company-section">
   <div class="company-header">
     <h1>Mon Stage en Entreprise</h1>
-    <p>	Découvrez les compétences que j’ai développées et les expériences marquantes acquises lors de mon stage à la DISI :</p>
+    <p>	Découvrez les compétences que j'ai développées et les expériences marquantes acquises lors de mon stage à la DISI :</p>
   </div>
 
   <div class="company-card">
@@ -262,28 +303,27 @@ body {
   <div class="company-card">
     <h2>Compétences Acquises</h2>
     <div class="experience-grid">
-      <div class="experience-card">
-        <h3>Gestion et résolution de tickets d’assistance</h3>
+      <div class="experience-card" data-link="https://www.servicenow.com/products/itsm-software.html">
+        <h3>Gestion et résolution de tickets d'assistance</h3>
         <ul class="skills-list">
-          <li>Traitement des tickets incluant la gestion des utilisateurs, groupes, mappages réseaux et droits d’accès</li>
-          <li>Compilation de rapports détaillant les modifications des droits d’accès</li>
+          <li>Traitement des tickets incluant la gestion des utilisateurs, groupes, mappages réseaux et droits d'accès</li>
+          <li>Compilation de rapports détaillant les modifications des droits d'accès</li>
         </ul>
       </div>
-      <div class="experience-card">
+      <div class="experience-card" data-link="https://www.cisco.com/c/en/us/products/switches/index.html">
         <h3>Configuration et gestion de commutateurs</h3>
         <ul class="skills-list">
           <li>Ajout et configuration de commutateurs 3600</li>
           <li>Reconfiguration et dépannage des commutateurs</li>
         </ul>
       </div>
-      <div class="experience-card">
-        <h3>Utilisation de scripts d’automatisation</h3>
+      <div class="experience-card" data-link="https://www.python.org/about/apps/">
+        <h3>Utilisation de scripts d'automatisation</h3>
         <ul class="skills-list">
-          <li>Tentatives d’utilisation des scripts d’automatisation pour diverses tâches administratives</li>
-          <li></li>
+          <li>Tentatives d'utilisation des scripts d'automatisation pour diverses tâches administratives</li>
         </ul>
       </div>
-      <div class="experience-card">
+      <div class="experience-card" data-link="https://en.wikipedia.org/wiki/RJ45_connector">
         <h3>Assurer la perennité des services et leurs matériels</h3>
         <ul class="skills-list">
           <li>Tests et validation des prises RJ45 pour connaitre leur compatinilitée TOIP</li>
@@ -301,7 +341,7 @@ body {
       </div>
       <div class="experience-card">
         <h3>Continuité de service :</h3>
-        <p> Remplacement de cœurs de réseaux par d'autres</p></p>
+        <p> Remplacement de cœurs de réseaux par d'autres</p>
       </div>
       <div class="experience-card">
         <h3>Assurer la perennité des services et leurs materiels :</h3>
@@ -333,6 +373,15 @@ document.addEventListener('DOMContentLoaded', function() {
     card.style.opacity = '0';
     card.style.transform = 'translateY(50px)';
     observer.observe(card);
+  });
+
+  // Add click event to experience cards with data-link
+  const experienceCards = document.querySelectorAll('.experience-card[data-link]');
+  experienceCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const link = this.getAttribute('data-link');
+      window.open(link, '_blank');
+    });
   });
 });
 </script>
