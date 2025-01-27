@@ -1,0 +1,4 @@
+Mettre à Disposition des Utilisateurs un Service Informatique
+Assistance technique : Surveillance et intervention sur les incidents réseau pour garantir la continuité des services
+Automatisation des tâches : Utilisation de scripts pour déployer des configurations et optimiser les processus administratifs
+Tests et mise en service : Vérification des installations et validation des services pour les utilisateurs (visioconférence, TOIP)

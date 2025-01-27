@@ -1,0 +1,4 @@
+Répondre aux Incidents et aux Demandes d’Assistance et d’Évolution
+Gestion des tickets d’assistance : Analyse et résolution des incidents de niveaux 1 et 2 via un outil de suivi
+Traitement des demandes utilisateurs : Gestion des droits d’accès, des groupes et des mappages réseau
+Documentation des interventions : Mails et rapports sur les incidents résolus et les modifications apportées aux systèmes

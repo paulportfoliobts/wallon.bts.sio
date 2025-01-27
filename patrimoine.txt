@@ -1,0 +1,4 @@
+Gérer le Patrimoine Informatique
+Inventaire et suivi des équipements : Mise à jour et maintenance du matériel réseau, tel que les commutateurs et les prises RJ45
+Tests d’infrastructures : Vérification de la compatibilité TOIP des prises réseau
+Validation matérielle : Diagnostic et évaluation des équipements de visioconférence (webcams, microphones, salles de réunion)
