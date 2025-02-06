@@ -1,3 +1,262 @@
+<html><head><base href=""><title>Organisation - Portfolio de Paul Peudecoeur</title>
+<link rel="icon" type="image/png" href="pp.png">
+<link rel="apple-touch-icon" href="pp.png">
+<link rel="shortcut icon" type="image/png" href="pp.png">
+<meta charset="UTF-8">
+<style>
+:root {
+  --primary: #2c3e50;
+  --accent: transparent;
+  --light: #ecf0f1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--primary);
+  background-color: var(--light);
+}
+
+.nav {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.nav-link.active {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  min-width: 200px;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background: linear-gradient(45deg, #ee7752, #23a6d5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.company-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+}
+
+.company-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.company-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.company-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.company-info {
+  padding: 2rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 10px;
+  color: white;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.experience-card {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: all 0.5s ease;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 200%;
+  animation: smoothGradient 10s ease infinite;
+  cursor: pointer;
+}
+
+@keyframes smoothGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.1);
+  transform: rotate(-45deg);
+  z-index: 1;
+}
+
+.experience-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.experience-card h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  color: black;
+}
+
+.skills-list {
+  list-style: none;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.skills-list li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.skills-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: rgba(0,0,0,0.7);
+}
+
+.skills-list li:hover {
+  color: #23d5ab;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a href="profil.html" class="nav-link">Profil</a>
+    </li>
+    <li class="nav-item">
+      <a href="organisation.html" class="nav-link active">Organisation</a>
+    </li>
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Epreuves</a>
+      <div class="dropdown">
+        <a href="epreuve-e5.html" class="dropdown-link active">Epreuve E5</a>
 <html>
   <head>
     <base href="">
@@ -42,7 +301,36 @@
         <h1>Mon Stage en Entreprise</h1>
         <p>Découvrez les expériences marquantes acquises lors de mon stage à la DISI :</p>
       </div>
+    </li>
+    <li class="nav-item">
+      <a href="veilles.html" class="nav-link">Veilles</a>
+    </li>
+    <li class="nav-item">
+      <a href="contact.html" class="nav-link">Contact</a>
+    </li>
+  </ul>
+</nav>
 
+<main class="company-section">
+  <div class="company-header">
+    <h1>Mon Stage en Entreprise</h1>
+    <p>	Découvrez les compétences que j'ai développées et les expériences marquantes acquises lors de mon stage à la DISI :</p>
+  </div>
+
+  <div class="company-card">
+    <h2>Présentation de l'Entreprise</h2>
+    <div class="company-details">
+      <div class="company-info">
+        <h3>Direction Générale des Services Informatiques (DISI) ; de la DGFIP</h3>
+        <p>Ses missions :</p>
+        <ul class="skills-list">
+          <li>acquisition de données</li>
+          <li>assistance</li>
+          <li>développement</li>
+          <li>éditique</li>
+          <li>intégration / qualification</li>
+          <li>exploitation</li>
+        </ul>
       <div class="company-card">
         <h2>Présentation de l'Entreprise</h2>
         <div class="company-details">
@@ -68,7 +356,41 @@
           </div>
         </div>
       </div>
+      <div class="company-info">
+        <h3>Mon Rôle</h3>
+        <ul class="skills-list">
+          <li>Support technique niveau 1 et 2</li>
+          <li>Administration système</li>
+          <li>Maintenance réseau</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <div class="company-card">
+    <h2>Compétences Acquises</h2>
+    <div class="experience-grid">
+      <div class="experience-card" data-link="https://paulportfoliobts.github.io/wallon.bts.sio/coeur-reseau.pdf">
+        <h3>Gérer le Patrimoine Informatique</h3>
+        <ul class="skills-list">
+          <li>Inventaire et suivi des équipements : Mise à jour et maintenance du matériel réseau, tel que les commutateurs et les prises RJ45</li>
+          <li>Tests d’infrastructures : Vérification de la compatibilité TOIP des prises réseau</li>
+          <li>Validation matérielle : Diagnostic et évaluation des équipements de visioconférence (webcams, microphones)</li>
+        </ul>
+      </div>
+      <div class="experience-card" data-link="https://paulportfoliobts.github.io/wallon.bts.sio/assistance.txt">
+        <h3>Répondre aux Incidents et aux Demandes d’Assistance et d’Évolution</h3>
+        <ul class="skills-list">
+          <li>Gestion des tickets d’assistance : Analyse et résolution des incidents de niveaux 1 et 2 via un outil de suivi</li>
+          <li>Traitement des demandes utilisateurs : Gestion des droits d’accès, des groupes et des mappages réseau</li>
+          <li>Documentation des interventions : Mails et rapports sur les incidents résolus et les modifications apportées aux systèmes</li>
+        </ul>
+      </div>
+      <div class="experience-card" data-link="https://paulportfoliobts.github.io/wallon.bts.sio/dispo.txt">
+        <h3>Mettre à Disposition des Utilisateurs un Service Informatique</h3>
+        <ul class="skills-list">
+          <li>Assistance technique : Surveillance et intervention sur les incidents réseau pour garantir la continuité des services</li>
+          <li>Automatisation des tâches : Utilisation de scripts pour déployer des configurations et optimiser les processus administratifs</li>
       <div class="company-card">
         <h2>Tâches Réalisées</h2>
         <ul class="task-card-list">
@@ -94,17 +416,57 @@
           </li>
         </ul>
       </div>
+    </div>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.company-card, .experience-card');
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    observer.observe(card);
+  });
+
+  // Add click event to experience cards with data-link
+  const experienceCards = document.querySelectorAll('.experience-card[data-link]');
+  experienceCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const link = this.getAttribute('data-link');
+      window.open(link, '_blank');
+    });
+  });
+});
+</script>
+
+</body></html>
     </main>
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const cards = document.querySelectorAll('.company-card');
-    
+
         const observerOptions = {
           threshold: 0.1,
           rootMargin: '0px 0px -50px 0px'
         };
-    
+
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -113,7 +475,7 @@
             }
           });
         }, observerOptions);
-    
+
         cards.forEach(card => {
           card.style.opacity = '0';
           card.style.transform = 'translateY(50px)';
