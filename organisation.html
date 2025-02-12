@@ -1,18 +1,28 @@
 <html>
 <head>
   <base href="">
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Organisation - Portfolio de Paul Peudecoeur</title>
-  <link rel="icon" type="image/png" href="pp.png">
-  <link rel="apple-touch-icon" href="pp.png">
-  <link rel="shortcut icon" type="image/png" href="pp.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="pp.png" />
+  <link rel="apple-touch-icon" href="pp.png" />
+  <link rel="shortcut icon" type="image/png" href="pp.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
   <style>
     :root {
       --primary: #2c3e50;
       --accent: transparent;
       --light: #ecf0f1;
+      --banner-bg-1: #00c6ff;
+      --banner-bg-2: #0072ff;
+      --banner-bg-3: #FF416C;
+      --banner-bg-4: #FF4B2B;
     }
 
     * {
@@ -65,34 +75,38 @@
       text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
     }
 
+    /* Dropdown updated to open on click and styled with a modern, Apple-like look */
     .dropdown {
-      display: none;
       position: absolute;
       top: 100%;
-      left: 0;
-      background: var(--primary);
-      min-width: 200px;
-      border-radius: 4px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
       padding: 0.5rem 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1001;
     }
-
-    .nav-item:hover .dropdown {
-      display: block;
+    .dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
     }
 
     .dropdown-link {
       display: block;
-      color: white;
+      color: #333;
       text-decoration: none;
       padding: 0.5rem 1rem;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease;
     }
-
     .dropdown-link:hover {
-      background: linear-gradient(45deg, #ee7752, #23a6d5);
-      background-size: 200% 200%;
-      animation: gradient 5s ease infinite;
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .company-section {
@@ -111,7 +125,98 @@
       border-radius: 15px;
       padding: 2rem;
       margin-bottom: 3rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    /* Updated presentation banner with colored background and without logos */
+    .company-presentation {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding: 1rem;
+      border-radius: 15px;
+    }
+    .presentation-item {
+      background: linear-gradient(135deg, var(--banner-bg-1), var(--banner-bg-2));
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+    .presentation-item:nth-child(2) {
+      background: linear-gradient(135deg, var(--banner-bg-3), var(--banner-bg-4));
+    }
+    .presentation-item h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+    .presentation-item p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    /* The user requested the following text to be bold */
+    .presentation-item p strong {
+      font-weight: 700;
+    }
+    .presentation-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .slide {
+      background: linear-gradient(-45deg, #2193b0, #6dd5ed);
+      padding: 2rem;
+      color: white;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 0.5s ease;
+      position: relative;
+    }
+
+    .slide.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .slide-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .slide-content {
+      line-height: 1.6;
+    }
+
+    .slide-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .slide-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .slide-dot.active {
+      background: white;
+      transform: scale(1.2);
     }
 
     .company-details {
@@ -164,7 +269,7 @@
       padding: 15px;
       background: linear-gradient(135deg, #2980b9, #8e44ad);
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-decoration: none;
       color: white;
@@ -173,7 +278,7 @@
 
     .task-card-list li:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     }
 
     .task-icon {
@@ -183,9 +288,15 @@
     }
 
     @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
   </style>
 </head>
@@ -224,18 +335,19 @@
 
     <div class="company-card">
       <h2>Présentation de l'Entreprise</h2>
-      <div class="company-details">
-        <div class="company-info">
-          <h3>Direction Générale des Services Informatiques (DISI) ; de la DGFIP</h3>
-          <p>Ses missions :</p>
-          <ul class="skills-list">
-            <li>acquisition de données</li>
-            <li>assistance</li>
-            <li>développement</li>
-            <li>éditique</li>
-            <li>intégration / qualification</li>
-            <li>exploitation</li>
-          </ul>
+      <!-- Updated presentation banner with scrolling functionality -->
+      <div class="company-presentation">
+        <div class="presentation-item">
+          <h3>DISI de la DGFIP</h3>
+          <p>
+            <strong>Direction des Systèmes d’Information de la DGFIP (Direction Générale des Finances Publiques) : entité responsable de la conception, de la mise en œuvre et de la maintenance des systèmes d’information au sein de la DGFIP, assurant le bon fonctionnement des infrastructures informatiques et la sécurité des données fiscales.</strong>
+          </p>
+        </div>
+        <div class="presentation-item">
+          <h3>SIL de la DISI</h3>
+          <p>
+            Service chargé de maintenir le patrimoine informatique de la DGFIP, fournissant une assistance de niveau 2 spécialisée dans la gestion des serveurs, de la téléphonie sur IP (ToIP) et de divers équipements informatiques tels que les bornes Wi-Fi et les caméras de visioconférence.
+          </p>
         </div>
       </div>
     </div>
@@ -244,23 +356,23 @@
       <h2>Tâches Réalisées</h2>
       <ul class="task-card-list">
         <li onclick="location.href='https://paulportfoliobts.github.io/wallon.bts.sio/coeur-reseau.pdf'">
-          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/1.png" alt="Remplacement coeurs de réseau">
+          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/1.png" alt="Remplacement coeurs de réseau" />
           <span>Remplacement coeurs de réseau</span>
         </li>
         <li onclick="location.href='https://example.com/task2'">
-          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png" alt="Gestion du materiel webcam et cameras">
+          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png" alt="Gestion du materiel webcam et cameras" />
           <span>Gestion du materiel webcam et cameras</span>
         </li>
         <li onclick="location.href='https://paulportfoliobts.github.io/wallon.bts.sio/prises.pdf'">
-          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/3.png" alt="Vérification de la compatibilité TOIP des prises réseau">
+          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/3.png" alt="Vérification de la compatibilité TOIP des prises réseau" />
           <span>Vérification de la compatibilité TOIP des prises réseau</span>
         </li>
         <li onclick="location.href='https://example.com/task4'">
-          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/4.png" alt="Branchement et mise en place de postes et équipements (CID)">
+          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/4.png" alt="Branchement et mise en place de postes et équipements (CID)" />
           <span>Branchement et mise en place de postes et équipements (CID)</span>
         </li>
         <li onclick="location.href='https://example.com/task5'">
-          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/5.png" alt="Lancement de scripts pour faire des mappings réseau">
+          <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/5.png" alt="Lancement de scripts pour faire des mappages réseau" />
           <span>Lancement de scripts pour faire des mappages réseau</span>
         </li>
       </ul>
@@ -270,12 +382,12 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const cards = document.querySelectorAll('.company-card');
-  
+      
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
       };
-  
+      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -284,7 +396,7 @@
           }
         });
       }, observerOptions);
-  
+      
       cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(50px)';
