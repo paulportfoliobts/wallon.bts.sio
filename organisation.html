@@ -120,6 +120,37 @@
       margin-bottom: 4rem;
     }
 
+    /* Nouvelle section pour les statistiques */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 4rem 0;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .counter {
+      text-align: center;
+    }
+    .counter .number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-block;
+    }
+    .counter .suffix {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .counter .description {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
     .company-card {
       background: white;
       border-radius: 15px;
@@ -327,6 +358,20 @@
       <p>Découvrez les expériences marquantes acquises lors de mon stage à la DISI :</p>
     </div>
 
+    <!-- Nouvelle section d'affichage dynamique des statistiques -->
+    <div class="stats">
+      <div class="counter">
+        <span class="number" data-target="15">0</span>
+        <span class="suffix">+</span>
+        <p class="description">Sites Supervisés</p>
+      </div>
+      <div class="counter">
+        <span class="number" data-target="50">0</span>
+        <span class="suffix">+</span>
+        <p class="description">Serveurs Gérés</p>
+      </div>
+    </div>
+
     <div class="company-card">
       <h2>Présentation de l'Entreprise</h2>
       <!-- Updated presentation banner with scrolling functionality -->
@@ -371,13 +416,12 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Animation d'apparition pour les company-card
       const cards = document.querySelectorAll('.company-card');
-      
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
       };
-      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -386,12 +430,42 @@
           }
         });
       }, observerOptions);
-      
       cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(50px)';
         observer.observe(card);
       });
+
+      // Fonction d'animation pour les compteurs
+      function animateCounters() {
+        const counters = document.querySelectorAll('.counter .number');
+        counters.forEach(counter => {
+          const target = +counter.getAttribute('data-target');
+          const updateCount = () => {
+            const current = +counter.innerText;
+            const increment = target / 100;
+            if (current < target) {
+              counter.innerText = Math.ceil(current + increment);
+              setTimeout(updateCount, 20);
+            } else {
+              counter.innerText = target;
+            }
+          };
+          updateCount();
+        });
+      }
+
+      // Observer pour lancer l'animation des compteurs dès leur apparition
+      const statsSection = document.querySelector('.stats');
+      const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            animateCounters();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      statsObserver.observe(statsSection);
     });
   </script>
 </body>
