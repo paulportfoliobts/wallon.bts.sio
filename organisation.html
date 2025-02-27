@@ -161,43 +161,35 @@
     }
 
     /* Updated presentation banner with colored background and without logos */
-    .company-presentation {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+    .company-presentation-container {
       padding: 1rem;
       border-radius: 15px;
     }
-    .presentation-item {
-      background: linear-gradient(135deg, var(--banner-bg-1), var(--banner-bg-2));
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      color: white;
+    .presentation-split {
+      display: flex;
+      gap: 2rem;
     }
-    .presentation-item:nth-child(2) {
-      background: linear-gradient(135deg, var(--banner-bg-3), var(--banner-bg-4));
+    .presentation-block {
+      flex: 1;
     }
-    .presentation-item h3 {
+    .presentation-icon {
       margin-bottom: 1rem;
-      font-size: 1.4rem;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-      padding-bottom: 0.5rem;
+      text-align: center;
     }
-    .presentation-item p {
-      font-size: 0.95rem;
-      line-height: 1.6;
+    .presentation-icon svg {
+      fill: var(--primary);
     }
-    /* The user requested the following text to be bold */
-    .presentation-item p strong {
-      font-weight: 700;
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
     }
-    .presentation-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    .skill-tag {
+      background: var(--primary);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
     }
 
     .slide {
@@ -374,19 +366,33 @@
 
     <div class="company-card">
       <h2>Présentation de l'Entreprise</h2>
-      <!-- Updated presentation banner with scrolling functionality -->
-      <div class="company-presentation">
-        <div class="presentation-item">
-          <h3>DISI de la DGFIP</h3>
-          <p>
-            <strong>Direction des Systèmes d’Information de la DGFIP (Direction Générale des Finances Publiques) : entité responsable de la conception, de la mise en œuvre et de la maintenance des systèmes d’information au sein de la DGFIP, assurant le bon fonctionnement des infrastructures informatiques et la sécurité des données fiscales.</strong>
-          </p>
-        </div>
-        <div class="presentation-item">
-          <h3>SIL de la DISI</h3>
-          <p>
-            Service chargé de maintenir le patrimoine informatique de la DGFIP, fournissant une assistance de niveau 2 spécialisée dans la gestion des serveurs, de la téléphonie sur IP (ToIP) et de divers équipements informatiques tels que les bornes Wi-Fi et les caméras de visioconférence.
-          </p>
+      <!-- Updated presentation section with side-by-side content -->
+      <div class="company-presentation-container">
+        <div class="presentation-split">
+          <div class="presentation-block" id="disi-content">
+            <div class="presentation-icon">
+              <svg viewBox="0 0 24 24" width="60" height="60">
+                <path fill="#2c3e50" d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" />
+              </svg>
+            </div>
+            <h3>DISI de la DGFIP</h3>
+            <p><strong>Direction des Systèmes d'Information de la DGFIP (Direction Générale des Finances Publiques) : entité responsable de la conception, de la mise en œuvre et de la maintenance des systèmes d'information au sein de la DGFIP, assurant le bon fonctionnement des infrastructures informatiques et la sécurité des données fiscales.</strong></p>
+          </div>
+          <div class="presentation-block" id="sil-content">
+            <div class="presentation-icon">
+              <svg viewBox="0 0 24 24" width="60" height="60">
+                <path fill="#2c3e50" d="M20,18C21.1,18 22,17.1 22,16V6C22,4.9 21.1,4 20,4H4C2.9,4 2,4.9 2,6V16C2,17.1 2.9,18 4,18H0V20H24V18H20M4,6H20V16H4V6Z" />
+              </svg>
+            </div>
+            <h3>SIL de la DISI</h3>
+            <p>Service chargé de maintenir le patrimoine informatique de la DGFIP, fournissant une assistance de niveau 2 spécialisée dans la gestion des serveurs, de la téléphonie sur IP (ToIP) et de divers équipements informatiques tels que les bornes Wi-Fi et les caméras de visioconférence.</p>
+            <div class="skill-tags">
+              <span class="skill-tag">Serveurs</span>
+              <span class="skill-tag">Téléphonie IP</span>
+              <span class="skill-tag">Wi-Fi</span>
+              <span class="skill-tag">Visioconférence</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
