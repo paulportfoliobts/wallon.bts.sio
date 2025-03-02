@@ -25,8 +25,8 @@
         --light: #ecf0f1;
         --dark: #1a1a2e;
         --text-light: #f7f7f7;
-        --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-        --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.1);
+        --card-shadow: 0 5px 10px rgba(0, 0, 0, 0.08), 0 3px 3px rgba(0, 0, 0, 0.08);
+        --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), 0 5px 5px rgba(0, 0, 0, 0.08);
         --task-gradient-1: linear-gradient(135deg, #2980b9, #8e44ad);
         --task-gradient-2: linear-gradient(135deg, #11998e, #38ef7d);
         --task-gradient-3: linear-gradient(135deg, #FF416C, #FF4B2B);
@@ -43,17 +43,19 @@
 
       body {
         font-family: "Poppins", sans-serif;
-        line-height: 1.6;
+        line-height: 1.4;
         color: var(--primary);
         background-color: var(--light);
         background-image: 
           radial-gradient(circle at 10% 20%, rgba(44, 62, 80, 0.05) 0%, rgba(44, 62, 80, 0) 20%),
           radial-gradient(circle at 90% 50%, rgba(35, 213, 171, 0.05) 0%, rgba(35, 213, 171, 0) 25%);
+        height: 100vh;
+        overflow: hidden;
       }
 
       .nav {
         background: var(--primary);
-        padding: 1rem 2rem;
+        padding: 0.5rem 2rem;
         position: fixed;
         width: 100%;
         z-index: 1000;
@@ -73,8 +75,8 @@
       .nav-link {
         color: white;
         text-decoration: none;
-        font-size: 1.1rem;
-        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        padding: 0.3rem 0.8rem;
         transition: color 0.3s ease;
       }
 
@@ -92,32 +94,39 @@
       .company-section {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 8rem 2rem 4rem;
+        padding: 3.5rem 1.5rem 1rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 1rem;
+        height: calc(100vh - 1rem);
+        overflow: hidden;
       }
 
       .main-content {
         flex: 1;
         min-width: 300px;
+        overflow-y: auto;
+        max-height: calc(100vh - 4rem);
+        padding-right: 0.5rem;
       }
 
       .sidebar {
-        width: 320px;
+        width: 280px;
         position: sticky;
-        top: 100px;
+        top: 70px;
         align-self: flex-start;
         transition: all 0.3s ease;
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
       }
 
       .company-header {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
         width: 100%;
         position: relative;
-        padding: 1.5rem;
-        border-radius: 15px;
+        padding: 0.8rem;
+        border-radius: 12px;
         background: var(--primary-gradient);
         color: var(--text-light);
         box-shadow: var(--card-shadow);
@@ -142,19 +151,23 @@
       }
 
       .company-header h1 {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.2rem;
         font-weight: 700;
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+      }
+
+      .company-header p {
+        font-size: 0.9rem;
       }
 
       .stats {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin: 0 0 3rem;
-        padding: 2rem;
+        margin: 0 0 1rem;
+        padding: 1rem 1.5rem;
         background: white;
-        border-radius: 15px;
+        border-radius: 12px;
         box-shadow: var(--card-shadow);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         position: relative;
@@ -167,12 +180,12 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 5px;
+        height: 3px;
         background: var(--accent-gradient);
       }
 
       .stats:hover {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
         box-shadow: var(--hover-shadow);
       }
 
@@ -183,7 +196,7 @@
       }
 
       .counter .number {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         font-weight: 700;
         background: var(--primary-gradient);
         -webkit-background-clip: text;
@@ -192,7 +205,7 @@
       }
 
       .counter .suffix {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         font-weight: 700;
         background: var(--primary-gradient);
         -webkit-background-clip: text;
@@ -200,17 +213,17 @@
       }
 
       .counter .description {
-        margin-top: 0.5rem;
-        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        font-size: 0.9rem;
         color: var(--primary);
         font-weight: 600;
       }
 
       .company-card {
         background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 3rem;
+        border-radius: 12px;
+        padding: 1.2rem;
+        margin-bottom: 1rem;
         box-shadow: var(--card-shadow);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         overflow: hidden;
@@ -218,15 +231,16 @@
       }
 
       .company-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
         box-shadow: var(--hover-shadow);
       }
 
       .company-card h2 {
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.3rem;
         position: relative;
         display: inline-block;
+        font-size: 1.3rem;
       }
 
       .company-card h2::after {
@@ -235,7 +249,7 @@
         bottom: 0;
         left: 0;
         width: 50%;
-        height: 3px;
+        height: 2px;
         background: var(--accent-gradient);
         border-radius: 10px;
         transition: width 0.3s ease;
@@ -246,37 +260,39 @@
       }
 
       .company-presentation-container {
-        padding: 1rem;
-        border-radius: 15px;
+        padding: 0.5rem;
+        border-radius: 12px;
       }
 
       .presentation-split {
         display: flex;
-        gap: 2rem;
+        gap: 1rem;
       }
 
       .presentation-block {
         flex: 1;
-        padding: 1.5rem;
-        border-radius: 12px;
+        padding: 1rem;
+        border-radius: 10px;
         background: linear-gradient(to bottom, rgba(236, 240, 241, 0.5), rgba(236, 240, 241, 0.2));
         transition: transform 0.3s ease;
       }
 
       .presentation-block:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
       }
 
       .presentation-icon {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         text-align: center;
       }
 
       .presentation-icon svg {
         fill: var(--primary);
-        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.08));
         transition: transform 0.3s ease;
+        width: 40px;
+        height: 40px;
       }
 
       .presentation-block:hover .presentation-icon svg {
@@ -285,25 +301,30 @@
 
       .presentation-block h3 {
         text-align: center;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         color: var(--primary);
         font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .presentation-block p {
+        font-size: 0.85rem;
       }
 
       .skill-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 1.5rem;
+        gap: 0.3rem;
+        margin-top: 0.8rem;
       }
 
       .skill-tag {
         background: var(--primary-gradient);
         color: white;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 0.2rem 0.5rem;
+        border-radius: 15px;
+        font-size: 0.7rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         transition: transform 0.2s ease;
       }
 
@@ -311,22 +332,22 @@
         transform: translateY(-2px);
       }
 
-      /* Style modifié pour la liste des tâches verticale */
+      /* Style pour la liste des tâches verticale */
       .task-card-list {
         list-style: none;
         padding: 0;
         margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 8px;
       }
 
       .task-card-list li {
         display: flex;
         align-items: center;
-        padding: 18px 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px 12px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         text-decoration: none;
         color: white;
@@ -354,8 +375,8 @@
       }
 
       .task-card-list li:hover {
-        transform: translateX(10px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        transform: translateX(5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
       }
 
       .task-card-list li:hover::after {
@@ -363,13 +384,13 @@
       }
 
       .task-icon {
-        width: 45px;
-        height: 45px;
-        margin-right: 15px;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
         border-radius: 50%;
-        padding: 5px;
+        padding: 3px;
         background: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         transition: transform 0.3s ease;
         object-fit: cover;
       }
@@ -380,19 +401,20 @@
 
       .task-card-list li span {
         font-weight: 600;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
         position: relative;
         z-index: 1;
+        font-size: 0.8rem;
       }
 
       /* Card titre de la sidebar */
       .sidebar-title {
         background: var(--primary-gradient);
         color: white;
-        border-radius: 12px 12px 0 0;
-        padding: 1.2rem;
+        border-radius: 10px 10px 0 0;
+        padding: 0.8rem;
         text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
         position: relative;
         overflow: hidden;
       }
@@ -413,14 +435,14 @@
         position: relative;
         z-index: 1;
         margin: 0;
-        font-size: 1.6rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-size: 1.2rem;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
       }
 
       .sidebar-content {
         background: white;
-        border-radius: 0 0 12px 12px;
-        padding: 1.5rem;
+        border-radius: 0 0 10px 10px;
+        padding: 0.8rem;
         box-shadow: var(--card-shadow);
       }
 
@@ -428,7 +450,7 @@
       @keyframes fadeUp {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(10px);
         }
         to {
           opacity: 1;
@@ -437,17 +459,47 @@
       }
 
       .fade-up {
-        animation: fadeUp 0.8s ease forwards;
+        animation: fadeUp 0.6s ease forwards;
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(236, 240, 241, 0.5);
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary-light);
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
       }
 
       /* Responsive design */
       @media (max-width: 900px) {
+        body {
+          overflow: auto;
+        }
+        
         .company-section {
           flex-direction: column;
+          height: auto;
+          overflow: visible;
+        }
+        
+        .sidebar, .main-content {
+          width: 100%;
+          max-height: none;
+          overflow: visible;
         }
         
         .sidebar {
-          width: 100%;
           margin-top: 1rem;
           position: static;
         }
@@ -463,7 +515,7 @@
         
         .task-card-list li {
           flex: 1 0 45%;
-          min-width: 250px;
+          min-width: 200px;
         }
       }
       
@@ -478,11 +530,11 @@
 
         .stats {
           flex-direction: column;
-          gap: 2rem;
+          gap: 1rem;
         }
 
         .company-header h1 {
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
       }
     </style>
@@ -539,7 +591,7 @@
             <div class="presentation-split">
               <div class="presentation-block" id="disi-content">
                 <div class="presentation-icon">
-                  <svg viewBox="0 0 24 24" width="60" height="60">
+                  <svg viewBox="0 0 24 24" width="40" height="40">
                     <path
                       fill="#2c3e50"
                       d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"
@@ -548,16 +600,14 @@
                 </div>
                 <h3>DISI de la DGFIP</h3>
                 <p>
-                  <strong>Direction des Systèmes d'Information de la DGFIP (Direction
-                  Générale des Finances Publiques) : entité responsable de la conception,
-                  de la mise en œuvre et de la maintenance des systèmes d'information au sein de la
-                  DGFIP, assurant le bon fonctionnement des infrastructures informatiques et la
-                  sécurité des données fiscales.</strong>
+                  <strong>Direction des Systèmes d'Information de la DGFIP :</strong> entité responsable de la conception,
+                  mise en œuvre et maintenance des systèmes d'information, assurant le bon fonctionnement des infrastructures
+                  et la sécurité des données fiscales.
                 </p>
               </div>
               <div class="presentation-block" id="sil-content">
                 <div class="presentation-icon">
-                  <svg viewBox="0 0 24 24" width="60" height="60">
+                  <svg viewBox="0 0 24 24" width="40" height="40">
                     <path
                       fill="#2c3e50"
                       d="M20,18C21.1,18 22,17.1 22,16V6C22,4.9 21.1,4 20,4H4C2.9,4 2,4.9 2,6V16C2,17.1 2.9,18 4,18H0V20H24V18H20M4,6H20V16H4V6Z"
@@ -566,10 +616,8 @@
                 </div>
                 <h3>SIL de la DISI</h3>
                 <p>
-                  Service chargé de maintenir le patrimoine informatique de la DGFIP,
-                  fournissant une assistance de niveau 2 spécialisée dans la gestion des
-                  serveurs, de la téléphonie sur IP (ToIP) et de divers équipements informatiques
-                  tels que les bornes Wi-Fi et les caméras de visioconférence.
+                  Service chargé de maintenir le patrimoine informatique, fournissant une assistance de niveau 2 
+                  spécialisée dans la gestion des serveurs, de la téléphonie IP et divers équipements.
                 </p>
                 <div class="skill-tags">
                   <span class="skill-tag">Serveurs</span>
@@ -648,7 +696,7 @@
         // Animation des compteurs
         function animateCounters() {
           const counters = document.querySelectorAll(".counter .number");
-          const speed = 500; // Durée de l'animation en ms
+          const speed = 400; // Durée de l'animation en ms
           
           counters.forEach((counter) => {
             const target = +counter.getAttribute("data-target");
@@ -669,7 +717,7 @@
         // Détecter quand les éléments entrent dans la vue
         const observerOptions = {
           threshold: 0.2,
-          rootMargin: "0px 0px -50px 0px",
+          rootMargin: "0px 0px -30px 0px",
         };
         
         const statsSection = document.querySelector(".stats");
