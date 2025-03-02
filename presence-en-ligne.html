@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <base href="">
+    <meta charset="UTF-8" />
+    <title>Présence en Ligne - Portfolio de Paul Peudecoeur</title>
+    <link rel="icon" type="image/png" href="pp.png" />
+    <link rel="apple-touch-icon" href="pp.png" />
+    <link rel="shortcut icon" type="image/png" href="pp.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #2c3e50;
+        --light: #ecf0f1;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--primary);
+        background-color: var(--light);
+      }
+      .nav {
+        background: var(--primary);
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+      .nav-list {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #23d5ab;
+        transform: translateY(-2px);
+      }
+      .nav-link.active {
+        color: #23d5ab;
+        font-weight: 600;
+      }
+      .company-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 8rem 2rem 4rem;
+      }
+      .company-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(44, 62, 80, 0.1);
+      }
+      .company-card:hover {
+        transform: translateY(-5px);
+      }
+      .company-card h2 {
+        color: #23d5ab;
+        margin-bottom: 1.5rem;
+        font-size: 2.2rem;
+        position: relative;
+      }
+      .company-card h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary);
+      }
+      .company-card ul {
+        margin: 1.5rem 0;
+        padding-left: 1.5rem;
+      }
+      .company-card li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+        line-height: 1.8;
+      }
+      .company-card li::before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        color: #23d5ab;
+        font-weight: bold;
+      }
+      .highlight-content {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 2rem 0;
+      }
+      .highlight-content h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+      }
+      .intro-text {
+        font-size: 1.1rem;
+        color: #7f8c8d;
+        margin-bottom: 2rem;
+      }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background: var(--primary);
+        color: white !important;
+        border-radius: 30px;
+        text-decoration: none !important;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+        box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+        border: 2px solid transparent;
+      }
+      .back-button:hover {
+        background: #23d5ab;
+        transform: translateX(5px);
+        box-shadow: 0 6px 20px rgba(35, 213, 171, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .back-button i {
+        transition: transform 0.3s ease;
+      }
+      .back-button:hover i {
+        transform: translateX(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a href="profil.html" class="nav-link">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a href="organisation.html" class="nav-link active">Organisation</a>
+        </li>
+        <li class="nav-item">
+          <a href="veilles.html" class="nav-link">Veilles</a>
+        </li>
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="company-section">
+      <div class="company-card">
+        <h2>Présence en Ligne</h2>
+        <p class="intro-text">Optimisation de la visibilité numérique :</p>
+        
+        <div class="highlight-content">
+          <h3>🌐 Stratégie de présence numérique</h3>
+          <ul>
+            <li>
+              <strong>Développement web :</strong> 
+              Création et maintenance de sites vitrines avec 
+              temps de chargement optimisés (< 2s)
+            </li>
+            <li>
+              <strong>Référencement naturel :</strong> 
+              Mise en place de stratégies SEO (50+ mots-clés positionnés) 
+              avec suivi Google Analytics
+            </li>
+            <li>
+              <strong>Réseaux sociaux :</strong> 
+              Animation de comptes professionnels avec augmentation 
+              de 150% de l'engagement en 6 mois
+            </li>
+            <li>
+              <strong>E-réputation :</strong> 
+              Surveillance et gestion des avis en ligne avec 
+              maintien d'une note moyenne de 4.8/5
+            </li>
+          </ul>
+        </div>
+
+        <a href="organisation.html" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+          Retour au portfolio
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
