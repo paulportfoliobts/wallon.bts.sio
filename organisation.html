@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <base href="">
@@ -7,7 +8,7 @@
     <link rel="apple-touch-icon" href="pp.png" />
     <link rel="shortcut icon" type="image/png" href="pp.png" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -17,12 +18,21 @@
     <style>
       :root {
         --primary: #2c3e50;
-        --accent: transparent;
+        --primary-light: #3d5a73;
+        --primary-gradient: linear-gradient(135deg, #2c3e50, #4b6cb7);
+        --accent: #23d5ab;
+        --accent-gradient: linear-gradient(135deg, #23d5ab, #23a6d5);
         --light: #ecf0f1;
-        --banner-bg-1: #00c6ff;
-        --banner-bg-2: #0072ff;
-        --banner-bg-3: #FF416C;
-        --banner-bg-4: #FF4B2B;
+        --dark: #1a1a2e;
+        --text-light: #f7f7f7;
+        --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+        --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.1);
+        --task-gradient-1: linear-gradient(135deg, #2980b9, #8e44ad);
+        --task-gradient-2: linear-gradient(135deg, #11998e, #38ef7d);
+        --task-gradient-3: linear-gradient(135deg, #FF416C, #FF4B2B);
+        --task-gradient-4: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        --task-gradient-5: linear-gradient(135deg, #4b6cb7, #182848);
+        --task-gradient-6: linear-gradient(135deg, #f46b45, #eea849);
       }
 
       * {
@@ -36,6 +46,9 @@
         line-height: 1.6;
         color: var(--primary);
         background-color: var(--light);
+        background-image: 
+          radial-gradient(circle at 10% 20%, rgba(44, 62, 80, 0.05) 0%, rgba(44, 62, 80, 0) 20%),
+          radial-gradient(circle at 90% 50%, rgba(35, 213, 171, 0.05) 0%, rgba(35, 213, 171, 0) 25%);
       }
 
       .nav {
@@ -66,60 +79,131 @@
       }
 
       .nav-link:hover {
-        color: #23d5ab;
+        color: var(--accent);
         text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
       }
 
       .nav-link.active {
-        color: #23d5ab;
+        color: var(--accent);
         text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
       }
 
-      /* ... (styles dropdown et autres éléments identiques) ... */
-
+      /* Layout principal avec flexbox */
       .company-section {
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 8rem 2rem 4rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .main-content {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .sidebar {
+        width: 320px;
+        position: sticky;
+        top: 100px;
+        align-self: flex-start;
+        transition: all 0.3s ease;
       }
 
       .company-header {
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
+        width: 100%;
+        position: relative;
+        padding: 1.5rem;
+        border-radius: 15px;
+        background: var(--primary-gradient);
+        color: var(--text-light);
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+      }
+
+      .company-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+        transform: rotate(-45deg);
+        z-index: 0;
+      }
+
+      .company-header h1, .company-header p {
+        position: relative;
+        z-index: 1;
+      }
+
+      .company-header h1 {
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        font-size: 2.5rem;
       }
 
       .stats {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin: 4rem 0;
+        margin: 0 0 3rem;
         padding: 2rem;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-radius: 15px;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stats::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--accent-gradient);
+      }
+
+      .stats:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--hover-shadow);
       }
 
       .counter {
         text-align: center;
+        position: relative;
+        z-index: 1;
       }
 
       .counter .number {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: 700;
-        color: var(--primary);
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         display: inline-block;
       }
 
       .counter .suffix {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: 700;
-        color: var(--primary);
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       .counter .description {
         margin-top: 0.5rem;
         font-size: 1.2rem;
         color: var(--primary);
+        font-weight: 600;
       }
 
       .company-card {
@@ -127,8 +211,38 @@
         border-radius: 15px;
         padding: 2rem;
         margin-bottom: 3rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         overflow: hidden;
+        position: relative;
+      }
+
+      .company-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--hover-shadow);
+      }
+
+      .company-card h2 {
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .company-card h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 3px;
+        background: var(--accent-gradient);
+        border-radius: 10px;
+        transition: width 0.3s ease;
+      }
+
+      .company-card:hover h2::after {
+        width: 100%;
       }
 
       .company-presentation-container {
@@ -143,6 +257,15 @@
 
       .presentation-block {
         flex: 1;
+        padding: 1.5rem;
+        border-radius: 12px;
+        background: linear-gradient(to bottom, rgba(236, 240, 241, 0.5), rgba(236, 240, 241, 0.2));
+        transition: transform 0.3s ease;
+      }
+
+      .presentation-block:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
       .presentation-icon {
@@ -152,64 +275,214 @@
 
       .presentation-icon svg {
         fill: var(--primary);
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+        transition: transform 0.3s ease;
+      }
+
+      .presentation-block:hover .presentation-icon svg {
+        transform: scale(1.1);
+      }
+
+      .presentation-block h3 {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--primary);
+        font-weight: 600;
       }
 
       .skill-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
       }
 
       .skill-tag {
-        background: var(--primary);
+        background: var(--primary-gradient);
         color: white;
-        padding: 0.2rem 0.5rem;
-        border-radius: 5px;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
       }
 
+      .skill-tag:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Style modifié pour la liste des tâches verticale */
       .task-card-list {
         list-style: none;
         padding: 0;
         margin: 0;
         display: flex;
+        flex-direction: column;
         gap: 15px;
-        flex-wrap: wrap;
       }
 
       .task-card-list li {
         display: flex;
         align-items: center;
-        padding: 20px 15px;
-        background: linear-gradient(135deg, #2980b9, #8e44ad);
-        border-radius: 10px;
+        padding: 18px 20px;
+        border-radius: 12px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         text-decoration: none;
         color: white;
         cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .task-card-list li:nth-child(1) { background: var(--task-gradient-1); }
+      .task-card-list li:nth-child(2) { background: var(--task-gradient-2); }
+      .task-card-list li:nth-child(3) { background: var(--task-gradient-3); }
+      .task-card-list li:nth-child(4) { background: var(--task-gradient-4); }
+      .task-card-list li:nth-child(5) { background: var(--task-gradient-5); }
+      .task-card-list li:nth-child(6) { background: var(--task-gradient-6); }
+
+      .task-card-list li::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0);
+        transition: background 0.3s ease;
       }
 
       .task-card-list li:hover {
         transform: translateX(10px);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .task-card-list li:hover::after {
+        background: rgba(255, 255, 255, 0.1);
       }
 
       .task-icon {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         margin-right: 15px;
+        border-radius: 50%;
+        padding: 5px;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        object-fit: cover;
       }
 
-      @keyframes gradient {
-        0% {
-          background-position: 0% 50%;
+      .task-card-list li:hover .task-icon {
+        transform: rotate(10deg);
+      }
+
+      .task-card-list li span {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Card titre de la sidebar */
+      .sidebar-title {
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 12px 12px 0 0;
+        padding: 1.2rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sidebar-title::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+        transform: rotate(-45deg);
+        z-index: 0;
+      }
+
+      .sidebar-title h2 {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        font-size: 1.6rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .sidebar-content {
+        background: white;
+        border-radius: 0 0 12px 12px;
+        padding: 1.5rem;
+        box-shadow: var(--card-shadow);
+      }
+
+      /* Animation pour les éléments */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-        50% {
-          background-position: 100% 50%;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        100% {
-          background-position: 0% 50%;
+      }
+
+      .fade-up {
+        animation: fadeUp 0.8s ease forwards;
+      }
+
+      /* Responsive design */
+      @media (max-width: 900px) {
+        .company-section {
+          flex-direction: column;
+        }
+        
+        .sidebar {
+          width: 100%;
+          margin-top: 1rem;
+          position: static;
+        }
+        
+        .main-content {
+          margin-right: 0;
+        }
+        
+        .task-card-list {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        
+        .task-card-list li {
+          flex: 1 0 45%;
+          min-width: 250px;
+        }
+      }
+      
+      @media (max-width: 600px) {
+        .task-card-list li {
+          flex: 1 0 100%;
+        }
+        
+        .presentation-split {
+          flex-direction: column;
+        }
+
+        .stats {
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        .company-header h1 {
+          font-size: 2rem;
         }
       }
     </style>
@@ -236,176 +509,169 @@
     </nav>
 
     <main class="company-section">
-      <div class="company-header">
+      <div class="company-header fade-up">
         <h1>Mon Stage en Entreprise</h1>
         <p>
           Découvrez les expériences marquantes acquises lors de mon stage à la
-          DISI :
+          DISI
         </p>
       </div>
 
-      <!-- Statistiques -->
-      <div class="stats">
-        <div class="counter">
-          <span class="number" data-target="15">0</span>
-          <span class="suffix">+</span>
-          <p class="description">Sites Supervisés</p>
+      <div class="main-content">
+        <!-- Statistiques -->
+        <div class="stats fade-up" style="animation-delay: 0.2s;">
+          <div class="counter">
+            <span class="number" data-target="15">0</span>
+            <span class="suffix">+</span>
+            <p class="description">Sites Supervisés</p>
+          </div>
+          <div class="counter">
+            <span class="number" data-target="50">0</span>
+            <span class="suffix">+</span>
+            <p class="description">Serveurs Gérés</p>
+          </div>
         </div>
-        <div class="counter">
-          <span class="number" data-target="50">0</span>
-          <span class="suffix">+</span>
-          <p class="description">Serveurs Gérés</p>
-        </div>
-      </div>
 
-      <!-- Présentation de l'Entreprise -->
-      <div class="company-card">
-        <h2>Présentation de l'Entreprise</h2>
-        <div class="company-presentation-container">
-          <div class="presentation-split">
-            <div class="presentation-block" id="disi-content">
-              <div class="presentation-icon">
-                <svg viewBox="0 0 24 24" width="60" height="60">
-                  <path
-                    fill="#2c3e50"
-                    d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"
-                  />
-                </svg>
+        <!-- Présentation de l'Entreprise -->
+        <div class="company-card fade-up" style="animation-delay: 0.4s;">
+          <h2>Présentation de l'Entreprise</h2>
+          <div class="company-presentation-container">
+            <div class="presentation-split">
+              <div class="presentation-block" id="disi-content">
+                <div class="presentation-icon">
+                  <svg viewBox="0 0 24 24" width="60" height="60">
+                    <path
+                      fill="#2c3e50"
+                      d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"
+                    />
+                  </svg>
+                </div>
+                <h3>DISI de la DGFIP</h3>
+                <p>
+                  <strong>Direction des Systèmes d'Information de la DGFIP (Direction
+                  Générale des Finances Publiques) : entité responsable de la conception,
+                  de la mise en œuvre et de la maintenance des systèmes d'information au sein de la
+                  DGFIP, assurant le bon fonctionnement des infrastructures informatiques et la
+                  sécurité des données fiscales.</strong>
+                </p>
               </div>
-              <h3>DISI de la DGFIP</h3>
-              <p>
-                <strong>Direction des Systèmes d'Information de la DGFIP (Direction
-                Générale des Finances Publiques) : entité responsable de la conception,
-                de la mise en œuvre et de la maintenance des systèmes d'information au sein de la
-                DGFIP, assurant le bon fonctionnement des infrastructures informatiques et la
-                sécurité des données fiscales.</strong>
-              </p>
-            </div>
-            <div class="presentation-block" id="sil-content">
-              <div class="presentation-icon">
-                <svg viewBox="0 0 24 24" width="60" height="60">
-                  <path
-                    fill="#2c3e50"
-                    d="M20,18C21.1,18 22,17.1 22,16V6C22,4.9 21.1,4 20,4H4C2.9,4 2,4.9 2,6V16C2,17.1 2.9,18 4,18H0V20H24V18H20M4,6H20V16H4V6Z"
-                  />
-                </svg>
-              </div>
-              <h3>SIL de la DISI</h3>
-              <p>
-                Service chargé de maintenir le patrimoine informatique de la DGFIP,
-                fournissant une assistance de niveau 2 spécialisée dans la gestion des
-                serveurs, de la téléphonie sur IP (ToIP) et de divers équipements informatiques
-                tels que les bornes Wi-Fi et les caméras de visioconférence.
-              </p>
-              <div class="skill-tags">
-                <span class="skill-tag">Serveurs</span>
-                <span class="skill-tag">Téléphonie IP</span>
-                <span class="skill-tag">Wi-Fi</span>
-                <span class="skill-tag">Visioconférence</span>
+              <div class="presentation-block" id="sil-content">
+                <div class="presentation-icon">
+                  <svg viewBox="0 0 24 24" width="60" height="60">
+                    <path
+                      fill="#2c3e50"
+                      d="M20,18C21.1,18 22,17.1 22,16V6C22,4.9 21.1,4 20,4H4C2.9,4 2,4.9 2,6V16C2,17.1 2.9,18 4,18H0V20H24V18H20M4,6H20V16H4V6Z"
+                    />
+                  </svg>
+                </div>
+                <h3>SIL de la DISI</h3>
+                <p>
+                  Service chargé de maintenir le patrimoine informatique de la DGFIP,
+                  fournissant une assistance de niveau 2 spécialisée dans la gestion des
+                  serveurs, de la téléphonie sur IP (ToIP) et de divers équipements informatiques
+                  tels que les bornes Wi-Fi et les caméras de visioconférence.
+                </p>
+                <div class="skill-tags">
+                  <span class="skill-tag">Serveurs</span>
+                  <span class="skill-tag">Téléphonie IP</span>
+                  <span class="skill-tag">Wi-Fi</span>
+                  <span class="skill-tag">Visioconférence</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Tâches Réalisées -->
-      <div class="company-card">
-        <h2>Tâches Réalisées</h2>
-        <ul class="task-card-list">
-          <li onclick="location.href='gestion-reseau.html'">
-            <img
-              class="task-icon"
-              src="https://paulportfoliobts.github.io/wallon.bts.sio/1.png"
-              alt="Gestion du Réseau"
-            />
-            <span>Gestion du Réseau</span>
-          </li>
-          <li onclick="location.href='gestion-actifs.html'">
-            <img
-              class="task-icon"
-              src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png"
-              alt="Gestion des Actifs"
-            />
-            <span>Gestion des Actifs</span>
-          </li>
-          <li onclick="location.href='telephonie.html'">
-            <img
-              class="task-icon"
-              src="https://paulportfoliobts.github.io/wallon.bts.sio/3.png"
-              alt="Téléphonie"
-            />
-            <span>Téléphonie</span>
-          </li>
-          <li onclick="location.href='mise-en-place-glpi.html'">
-            <img
-              class="task-icon"
-              src="https://paulportfoliobts.github.io/wallon.bts.sio/4.png"
-              alt="Mise en place de GLPI"
-            />
-            <span>Mise en place de GLPI</span>
-          </li>
-          <li onclick="location.href='gestion-utilisateurs.html'">
-            <img
-              class="task-icon"
-              src="https://paulportfoliobts.github.io/wallon.bts.sio/5.png"
-              alt="Gestion des Utilisateurs"
-            />
-            <span>Gestion des Utilisateurs</span>
-          </li>
-          <li onclick="location.href='presence-en-ligne.html'">
-            <img
-              class="task-icon"
-              src="https://paulportfoliobts.github.io/wallon.bts.sio/6.png"
-              alt="Présence en Ligne"
-            />
-            <span>Présence en Ligne</span>
-          </li>
-        </ul>
+      <!-- Sidebar avec les tâches -->
+      <div class="sidebar fade-up" style="animation-delay: 0.6s;">
+        <div class="sidebar-title">
+          <h2>Tâches Réalisées</h2>
+        </div>
+        <div class="sidebar-content">
+          <ul class="task-card-list">
+            <li onclick="location.href='gestion-reseau.html'">
+              <img
+                class="task-icon"
+                src="https://paulportfoliobts.github.io/wallon.bts.sio/1.png"
+                alt="Gestion du Réseau"
+              />
+              <span>Gestion du Réseau</span>
+            </li>
+            <li onclick="location.href='gestion-actifs.html'">
+              <img
+                class="task-icon"
+                src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png"
+                alt="Gestion des Actifs"
+              />
+              <span>Gestion des Actifs</span>
+            </li>
+            <li onclick="location.href='telephonie.html'">
+              <img
+                class="task-icon"
+                src="https://paulportfoliobts.github.io/wallon.bts.sio/3.png"
+                alt="Téléphonie"
+              />
+              <span>Téléphonie</span>
+            </li>
+            <li onclick="location.href='mise-en-place-glpi.html'">
+              <img
+                class="task-icon"
+                src="https://paulportfoliobts.github.io/wallon.bts.sio/4.png"
+                alt="Mise en place de GLPI"
+              />
+              <span>Mise en place de GLPI</span>
+            </li>
+            <li onclick="location.href='gestion-utilisateurs.html'">
+              <img
+                class="task-icon"
+                src="https://paulportfoliobts.github.io/wallon.bts.sio/5.png"
+                alt="Gestion des Utilisateurs"
+              />
+              <span>Gestion des Utilisateurs</span>
+            </li>
+            <li onclick="location.href='presence-en-ligne.html'">
+              <img
+                class="task-icon"
+                src="https://paulportfoliobts.github.io/wallon.bts.sio/6.png"
+                alt="Présence en Ligne"
+              />
+              <span>Présence en Ligne</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </main>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Animation d'apparition pour les company-card
-        const cards = document.querySelectorAll(".company-card");
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        };
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0)";
-            }
-          });
-        }, observerOptions);
-        cards.forEach((card) => {
-          card.style.opacity = "0";
-          card.style.transform = "translateY(50px)";
-          observer.observe(card);
-        });
-
         // Animation des compteurs
         function animateCounters() {
           const counters = document.querySelectorAll(".counter .number");
+          const speed = 500; // Durée de l'animation en ms
+          
           counters.forEach((counter) => {
             const target = +counter.getAttribute("data-target");
+            const increment = target / speed * 10; // Incrément plus fluide
+            
             const updateCount = () => {
-              const current = +counter.innerText;
-              const increment = target / 100;
-              if (current < target) {
-                counter.innerText = Math.ceil(current + increment);
-                setTimeout(updateCount, 20);
-              } else {
-                counter.innerText = target;
+              const count = +counter.innerText;
+              if (count < target) {
+                counter.innerText = Math.min(Math.ceil(count + increment), target);
+                setTimeout(updateCount, 10);
               }
             };
+            
             updateCount();
           });
         }
 
-        // Observer pour lancer l'animation des compteurs dès leur apparition
+        // Détecter quand les éléments entrent dans la vue
+        const observerOptions = {
+          threshold: 0.2,
+          rootMargin: "0px 0px -50px 0px",
+        };
+        
         const statsSection = document.querySelector(".stats");
         const statsObserver = new IntersectionObserver(
           (entries, observer) => {
@@ -416,9 +682,32 @@
               }
             });
           },
-          { threshold: 0.5 }
+          observerOptions
         );
+        
         statsObserver.observe(statsSection);
+        
+        // Ajouter des effets subtils au survol des cartes
+        const cards = document.querySelectorAll('.company-card, .task-card-list li');
+        
+        cards.forEach(card => {
+          card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Effet de brillance subtil
+            if (this.classList.contains('company-card')) {
+              this.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%), white`;
+            }
+          });
+          
+          card.addEventListener('mouseleave', function() {
+            if (this.classList.contains('company-card')) {
+              this.style.background = 'white';
+            }
+          });
+        });
       });
     </script>
   </body>
