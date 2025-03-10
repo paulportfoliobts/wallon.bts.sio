@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <base href="">
@@ -170,13 +171,56 @@
       }
       
       .dgfip-logo {
-        width: 80px;
-        height: 48px;
+        width: 160px;
+        height: 96px;
         display: inline-block;
         margin-bottom: 8px;
-        margin-left: 8px;
+        margin-right: 12px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         border-radius: 2px;
+        vertical-align: middle;
+      }
+      
+      .header-title-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .sites-web-container {
+        margin-top: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 10px;
+      }
+      
+      .sites-web-container h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      
+      .sites-web-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        font-size: 0.8rem;
+      }
+      
+      .site-item {
+        padding: 5px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      
+      .site-name {
+        font-weight: 600;
+        display: block;
+      }
+      
+      .site-desc {
+        font-size: 0.75rem;
+        opacity: 0.9;
       }
 
       .stats {
@@ -536,6 +580,10 @@
           flex: 1 0 45%;
           min-width: 200px;
         }
+        
+        .sites-web-list {
+          grid-template-columns: 1fr;
+        }
       }
       
       @media (max-width: 600px) {
@@ -554,6 +602,15 @@
 
         .company-header h1 {
           font-size: 1.5rem;
+        }
+        
+        .header-title-container {
+          flex-direction: column;
+        }
+        
+        .dgfip-logo {
+          margin-right: 0;
+          margin-bottom: 15px;
         }
       }
     </style>
@@ -578,13 +635,34 @@
 
     <main class="company-section">
       <div class="company-header fade-up">
-        <!-- Logo DGFIP ajouté à côté du drapeau français -->
-        <img class="dgfip-logo" src="https://paulportfoliobts.github.io/wallon.bts.sio/dgfip1.png" alt="Logo DGFIP" />
-        <h1>Mon Stage en Entreprise</h1>
-        <p>
-          Découvrez les expériences marquantes acquises lors de mon stage à la
-          DISI
-        </p>
+        <div class="header-title-container">
+          <!-- Logo DGFIP agrandi et déplacé à gauche du titre -->
+          <img class="dgfip-logo" src="https://paulportfoliobts.github.io/wallon.bts.sio/dgfip1.png" alt="Logo DGFIP" />
+          <h1>Mon Stage en Entreprise</h1>
+        </div>
+        
+        <!-- Sites web DGFIP ajoutés -->
+        <div class="sites-web-container">
+          <h3><strong>Site Web de l'organisation</strong></h3>
+          <div class="sites-web-list">
+            <div class="site-item">
+              <span class="site-name">impots.gouv.fr</span>
+              <span class="site-desc">Services fiscaux en ligne pour les particuliers</span>
+            </div>
+            <div class="site-item">
+              <span class="site-name">collectivites-locales.gouv.fr</span>
+              <span class="site-desc">Informations et services pour les collectivités locales</span>
+            </div>
+            <div class="site-item">
+              <span class="site-name">economie.gouv.fr/dgfip</span>
+              <span class="site-desc">Informations institutionnelles sur la DGFiP</span>
+            </div>
+            <div class="site-item">
+              <span class="site-name">portail.dgfip.finances.gouv.fr</span>
+              <span class="site-desc">Échanges numériques pour les collectivités et établissements publics</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="main-content">
@@ -776,5 +854,3 @@
         });
       });
     </script>
-  </body>
-</html>
