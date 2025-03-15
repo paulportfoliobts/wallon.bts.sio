@@ -172,6 +172,14 @@
     .image-container img:hover {
       transform: scale(1.05);
     }
+    .main-image {
+      max-width: 50%;
+      margin: 1rem auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
 
     /* Responsive Design */
     @media (min-width: 768px) {
@@ -212,22 +220,21 @@
   <main class="company-section">
     <div class="company-card">
       <h2>Expertise Réseau</h2>
-      <p class="intro-text">Au cœur des infrastructures numériques :</p>
 
       <div class="highlight-content">
-        <h3>🛠 Diagnostic de réseaux </h3>
+        <h3>🛠 Recettage des prises RJ45 avec Fluke Networks</h3>
+        <p><strong>Pourquoi ?</strong><br>
+        Assurer la qualité et la conformité des infrastructures réseau</p>
+        
+        <p><strong>Comment ?</strong></p>
         <ul>
-          <li>
-            <strong>Controle de qualité :</strong> Recettage des infrastructures RJ45 avec
-            l'analyseur Fluke Networks pour mesurer leurs performances
-          </li>
-          <li>
-            <strong>Architecture réseau :</strong> Brassage de prises dans les LTI
-
-          </li>
+          <li>Contrôle de qualité avec analyseur Fluke Networks</li>
+          <li>Validation des normes (Cat 5e, 6, 6a...)</li>
         </ul>
       </div>
 
+      <img src="https://paulportfoliobts.github.io/wallon.bts.sio/1.3.png" alt="Test RJ45" class="main-image">
+      
       <a href="organisation.html" class="back-button">
         <i class="fas fa-arrow-left"></i>
         Retour aux réalisations
@@ -235,8 +242,9 @@
     </div>
 
     <div class="image-container">
-      <img src="https://paulportfoliobts.github.io/wallon.bts.sio/1.1.png" alt="Image 1" />
-      <img src="https://paulportfoliobts.github.io/wallon.bts.sio/1.2.png" alt="Image 2" />
+      <img src="https://paulportfoliobts.github.io/wallon.bts.sio/1.1.png" alt="Schéma réseau">
+      <img src="https://paulportfoliobts.github.io/wallon.bts.sio/1.2.png" alt="Câblage">
+      <img src="https://paulportfoliobts.github.io/wallon.bts.sio/1.4.png" alt="Rapport test">
     </div>
   </main>
 </body>
