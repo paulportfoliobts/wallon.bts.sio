@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <base href="">
@@ -637,7 +636,7 @@
       <div class="company-header fade-up">
         <div class="header-title-container">
           <!-- Logo DGFIP agrandi et déplacé à gauche du titre -->
-          <img class="dgfip-logo" src="https://paulportfoliobts.github.io/wallon.bts.sio/dgfip2.png" alt="Logo DGFIP" />
+          <img class="dgfip-logo" src="https://paulportfoliobts.github.io/wallon.bts.sio/dgfip2.png" alt="Logo DGFIP" style="width:200px; height:auto;"/>
           <h1>Mon Stage en Entreprise</h1>
         </div>
         
@@ -733,64 +732,78 @@
           <h2>Tâches Réalisées</h2>
         </div>
         <div class="sidebar-content">
-          <ul class="task-card-list">
-            <li onclick="location.href='gestion-reseau.html'">
-              <img
-                class="task-icon"
-                src="https://paulportfoliobts.github.io/wallon.bts.sio/1.png"
-                alt="Gestion du Réseau"
-              />
-              <span>Gestion du Réseau</span>
-            </li>
-            <li onclick="location.href='gestion-actifs.html'">
-              <img
-                class="task-icon"
-                src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png"
-                alt="Gestion des Actifs"
-              />
-              <span>Automatisation Active Directory</span>
-            </li>
-            <li onclick="location.href='zabbix.html'">
-              <img
-                class="task-icon"
-                src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png"
-                alt="Gestion des Actifs"
-              />
-              <span>Supervision Zabbix</span>
-            </li>
-            <li onclick="location.href='telephonie.html'">
-              <img
-                class="task-icon"
-                src="https://paulportfoliobts.github.io/wallon.bts.sio/3.png"
-                alt="Téléphonie"
-              />
-              <span>Téléphonie</span>
-            </li>
-            <li onclick="location.href='mise-en-place-glpi.html'">
-              <img
-                class="task-icon"
-                src="https://paulportfoliobts.github.io/wallon.bts.sio/4.png"
-                alt="Mise en place de GLPI"
-              />
-              <span>Mise en place de GLPI</span>
-            </li>
-            <li onclick="location.href='gestion-utilisateurs.html'">
-              <img
-                class="task-icon"
-                src="https://paulportfoliobts.github.io/wallon.bts.sio/5.png"
-                alt="Gestion des Utilisateurs"
-              />
-              <span>Gestion des Utilisateurs</span>
-            </li>
-                        <li onclick="location.href='gestion-utilisateurs.html'">
-              <img
-                class="task-icon"
-                src="https://paulportfoliobts.github.io/wallon.bts.sio/5.png"
-                alt="Gestion des Utilisateurs"
-              />
-              <span>Gestion des Utilisateurs</span>
-            </li>
-          </ul>
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th>En Formation</th>
+                <th>En Entreprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <ul class="task-card-list">
+                    <li onclick="location.href='formation-ad.html'">
+                      <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png" alt="Formation">
+                      <span>Automatisation Active Directory : 11, 12</span>
+                    </li>
+                    <li onclick="location.href='formation-reseau.html'">
+                      <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png" alt="Formation">
+                      <span>Supervision Réseau 13</span>
+                    </li>
+                    <li onclick="location.href='formation-services.html'">
+                      <img class="task-icon" src="https://paulportfoliobts.github.io/wallon.bts.sio/4.png" alt="Formation">
+                      <span>Mise en place de services 14</span>
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="task-card-list">
+                    <li onclick="location.href='gestion-reseau.html'">
+                      <img
+                        class="task-icon"
+                        src="https://paulportfoliobts.github.io/wallon.bts.sio/1.png"
+                        alt="Gestion du Réseau"
+                      />
+                      <span>Gestion du Réseau</span>
+                    </li>
+                    <li onclick="location.href='gestion-actifs.html'">
+                      <img
+                        class="task-icon"
+                        src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png"
+                        alt="Gestion des Actifs"
+                      />
+                      <span>Automatisation Active Directory</span>
+                    </li>
+                    <li onclick="location.href='zabbix.html'">
+                      <img
+                        class="task-icon"
+                        src="https://paulportfoliobts.github.io/wallon.bts.sio/2.png"
+                        alt="Gestion des Actifs"
+                      />
+                      <span>Supervision Zabbix</span>
+                    </li>
+                    <li onclick="location.href='telephonie.html'">
+                      <img
+                        class="task-icon"
+                        src="https://paulportfoliobts.github.io/wallon.bts.sio/3.png"
+                        alt="Téléphonie"
+                      />
+                      <span>Téléphonie</span>
+                    </li>
+                    <li onclick="location.href='mise-en-place-glpi.html'">
+                      <img
+                        class="task-icon"
+                        src="https://paulportfoliobts.github.io/wallon.bts.sio/4.png"
+                        alt="Mise en place de GLPI"
+                      />
+                      <span>Mise en place de GLPI</span>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
@@ -862,3 +875,6 @@
         });
       });
     </script>
+
+  </body>
+</html>
