@@ -2,7 +2,7 @@
   <head>
     <base href="">
     <meta charset="UTF-8" />
-    <title>Téléphonie - Portfolio de Paul Peudecoeur</title>
+    <title>Infrastructure IT - Portfolio de Paul Peudecoeur</title>
     <link rel="icon" type="image/png" href="pp.png" />
     <link rel="apple-touch-icon" href="pp.png" />
     <link rel="shortcut icon" type="image/png" href="pp.png" />
@@ -150,19 +150,48 @@
       .back-button:hover i {
         transform: translateX(-3px);
       }
+      .mission-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .mission-text {
+        flex: 1;
+      }
+      .mission-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        max-width: 300px;
+      }
+      .mission-images img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      @media (max-width: 768px) {
+        .mission-content {
+          flex-direction: column;
+        }
+        .mission-images {
+          max-width: 100%;
+          justify-content: center;
+        }
+      }
     </style>
   </head>
   <body>
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
-          <a href="index.html" class="nav-link">Accueil</a>
+          <a href="index.html" class="nav-link active">Accueil</a>
         </li>
         <li class="nav-item">
           <a href="profil.html" class="nav-link">Profil</a>
         </li>
         <li class="nav-item">
-          <a href="organisation.html" class="nav-link active">Organisation</a>
+          <a href="organisation.html" class="nav-link">Organisation</a>
         </li>
         <li class="nav-item">
           <a href="contact.html" class="nav-link">Contact</a>
@@ -172,35 +201,37 @@
 
     <main class="company-section">
       <div class="company-card">
-        <h2>Infrastructure Téléphonique</h2>
-        <p class="intro-text">Modernisation des systèmes de communication :</p>
-        
         <div class="highlight-content">
-          <h3>📞 Déploiement de solutions ToIP</h3>
-          <ul>
-            <li>
-              <strong>Intégration complète :</strong> 
-              Installation et configuration d'équipements téléphoniques 
-              (PBX IP, gateways SIP) avec interconnexion multi-sites
-            </li>
-            <li>
-              <strong>Postes utilisateurs :</strong> 
-              Déploiement de 50+ postes ToIP avec configuration 
-              centralisée (serveur 3CX)
-            </li>
-            <li>
-              <strong>Interopérabilité :</strong> 
-              Intégration des équipements périphériques (imprimantes réseau, 
-              téléphones DECT) avec QoS garantie
-            </li>
-            <li>
-              <strong>Support multi-site :</strong> 
-              Installation et configuration sur 5 sites distants avec 
-              synchronisation centralisée
-            </li>
-          </ul>
+          <div class="mission-content">
+            <div class="mission-text">
+              <h3>🖥️ Installation et configuration des équipements pour le CID</h3>
+              
+              <p class="intro-text">Mission : Mise en place des équipements informatiques du service CID de la DGFIP</p>
+              
+              <ul>
+                <li>Site : Nouvelle Cité Marianne, Lille</li>
+                <li>Organisme : DGFIP</li>
+                <li>Matériel : PC, écrans, téléphones IP, imprimantes</li>
+              </ul>
+              
+              <h4>Principales Actions</h4>
+              <ul>
+                <li>Branchement des équipements</li>
+                <li>Connexion des téléphones IP</li>
+                <li>Configuration des imprimantes réseau</li>
+                <li>Vérification de la connectivité</li>
+              </ul>
+            </div>
+            
+            <div class="mission-images">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.1.png" alt="Image 1">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.3.png" alt="Image 2">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.4.png" alt="Image 3">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.2.png" alt="Image 4">
+            </div>
+          </div>
         </div>
-
+        
         <a href="organisation.html" class="back-button">
           <i class="fas fa-arrow-left"></i>
           Retour au portfolio
