@@ -1,0 +1,265 @@
+<html>
+  <head>
+    <base href="">
+    <meta charset="UTF-8" />
+    <title>Infrastructure IT - Portfolio de Paul Peudecoeur</title>
+    <link rel="icon" type="image/png" href="pp.png" />
+    <link rel="apple-touch-icon" href="pp.png" />
+    <link rel="shortcut icon" type="image/png" href="pp.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #2c3e50;
+        --light: #ecf0f1;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--primary);
+        background-color: var(--light);
+      }
+      .nav {
+        background: var(--primary);
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+      .nav-list {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #23d5ab;
+        transform: translateY(-2px);
+      }
+      .nav-link.active {
+        color: #23d5ab;
+        font-weight: 600;
+      }
+      .company-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 8rem 2rem 4rem;
+      }
+      .company-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(44, 62, 80, 0.1);
+      }
+      .company-card:hover {
+        transform: translateY(-5px);
+      }
+      .company-card h2 {
+        color: #23d5ab;
+        margin-bottom: 1.5rem;
+        font-size: 2.2rem;
+        position: relative;
+      }
+      .company-card h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary);
+      }
+      .company-card ul {
+        margin: 1.5rem 0;
+        padding-left: 1.5rem;
+      }
+      .company-card li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+        line-height: 1.8;
+      }
+      .company-card li::before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        color: #23d5ab;
+        font-weight: bold;
+      }
+      .highlight-content {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 2rem 0;
+      }
+      .highlight-content h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+      }
+      .intro-text {
+        font-size: 1.1rem;
+        color: #7f8c8d;
+        margin-bottom: 2rem;
+      }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background: var(--primary);
+        color: white !important;
+        border-radius: 30px;
+        text-decoration: none !important;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+        box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+        border: 2px solid transparent;
+      }
+      .back-button:hover {
+        background: #23d5ab;
+        transform: translateX(5px);
+        box-shadow: 0 6px 20px rgba(35, 213, 171, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .back-button i {
+        transition: transform 0.3s ease;
+      }
+      .back-button:hover i {
+        transform: translateX(-3px);
+      }
+      .mission-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .mission-text {
+        flex: 1;
+      }
+      .mission-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        max-width: 300px;
+      }
+      .mission-images img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .image-container {
+        width: 140px;
+        height: 140px;
+      }
+      .image-container svg {
+        width: 100%;
+        height: 100%;
+      }
+      @media (max-width: 768px) {
+        .mission-content {
+          flex-direction: column;
+        }
+        .mission-images {
+          max-width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link active">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a href="profil.html" class="nav-link">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a href="organisation.html" class="nav-link">Organisation</a>
+        </li>
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="company-section">
+      <div class="company-card">
+        <div class="highlight-content">
+          <div class="mission-content">
+            <div class="mission-text">
+              <h3>📌 Gestion et planification de projet</h3>
+              
+              <h4>🔹 Pourquoi ?</h4>
+              <ul>
+                <li>Organiser et suivre l’avancement d’un projet en équipe</li>
+                <li>Répartir efficacement les tâches et les responsabilités</li>
+              </ul>
+
+              <h4>🔹 Comment ?</h4>
+              <ul>
+                <li>Utilisation d’un outil type Kanban intégré à Moodle</li>
+                <li>Création et suivi des tâches en temps réel</li>
+                <li>Ajustement des priorités en fonction de l’avancement</li>
+              </ul>
+            </div>
+            
+            <div class="mission-images">
+              <div class="image-container">
+                <svg viewBox="0 0 100 100" class="placeholder-image">
+                  <rect width="100%" height="100%" fill="#f0f0f0"/>
+                  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#666" font-size="8">
+                    Image en cours
+                    <tspan x="50%" dy="1.2em">de réalisation</tspan>
+                  </text>
+                  <path d="M50 30 L65 50 L50 70 L35 50 Z" fill="#23d5ab" opacity="0.2"/>
+                </svg>
+              </div>
+              <div class="image-container">
+                <svg viewBox="0 0 100 100" class="placeholder-image">
+                  <rect width="100%" height="100%" fill="#f0f0f0"/>
+                  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#666" font-size="8">
+                    Image en cours
+                    <tspan x="50%" dy="1.2em">de réalisation</tspan>
+                  </text>
+                  <circle cx="50" cy="50" r="20" fill="#23d5ab" opacity="0.2"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <a href="organisation.html" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+          Retour au portfolio
+        </a>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
