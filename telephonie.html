@@ -224,10 +224,10 @@
             </div>
             
             <div class="mission-images">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.1.png" alt="Image 1">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.3.png" alt="Image 2">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.4.png" alt="Image 3">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.2.png" alt="Image 4">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.1.png" alt="Image 1" onclick="openModal(this)">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.3.png" alt="Image 2" onclick="openModal(this)">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.4.png" alt="Image 3" onclick="openModal(this)">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.2.png" alt="Image 4" onclick="openModal(this)">
             </div>
           </div>
         </div>
@@ -238,5 +238,27 @@
         </a>
       </div>
     </main>
+
+    <!-- Add image modal -->
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="expandedImg">
+    </div>
+
+    <script>
+      function openModal(img) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("expandedImg");
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+      }
+    </script>
+
   </body>
 </html>
