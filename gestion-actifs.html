@@ -160,35 +160,35 @@
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       }
     }
-    .code-modal {
+    #modal {
       display: none;
       position: fixed;
-      z-index: 1;
+      z-index: 1000;
       padding-top: 100px;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgb(0,0,0);
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0, 0, 0, 0.8);
     }
-    .code-modal-content {
-      background-color: #fefefe;
+    #modalContent {
       margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
+      max-width: 90%;
+      max-height: 90vh;
     }
-    .close-code {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
+    .close-modal {
+      color: #fff;
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      font-size: 40px;
       font-weight: bold;
+      cursor: pointer;
     }
-    .close-code:hover,
-    .close-code:focus {
-      color: black;
+    .close-modal:hover,
+    .close-modal:focus {
+      color: #bbb;
       text-decoration: none;
       cursor: pointer;
     }
@@ -247,9 +247,16 @@
       </a>
     </div>
   </main>
-  <div id="codeModal" class="code-modal">
-    <span class="close-code">&times;</span>
-    <pre id="codeContent" style="background: #000; color: #fff; padding: 1.5rem; border: 2px solid #23d5ab; border-radius: 8px; max-height: 80vh; overflow: auto; white-space: pre-wrap; font-size: 1rem; font-family: 'Courier New', monospace; line-height: 1.6; box-shadow: 0 4px 10px rgba(255,255,255,0.3);">sysname Sw1
+  <div id="modal">
+    <span id="closeModal" class="close-modal">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+  <script>
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.getElementById('closeModal');
+  
+    const codeSnippet = `sysname Sw1
 
 clock timezone GMT add 01:00:00
 clock summer-time GMT repeating 00:00:00 2025 March last Sunday 00:00:00 2025 October last Sunday 01:00:00
@@ -354,21 +361,29 @@ ssh user admin service-type all authentication-type password
 
 user-interface vty 0 8
 authentication-mode scheme
-protocol inbound ssh</pre>
-  </div>
-  <script src="main.js"></script>
-  <script>
+protocol inbound ssh`;
+  
+    function openModal(content) {
+      modalContent.innerHTML = content;
+      modal.style.display = "block";
+    }
+  
     document.getElementById("configuration-item").addEventListener("click", function() {
-      document.getElementById("codeModal").style.display = "block";
+      openModal("<pre style='background:#000; color:#fff; padding:1.5rem; border:2px solid #23d5ab; border-radius:8px; max-height:80vh; overflow:auto; white-space:pre-wrap; font-size:1rem; font-family:Courier New, monospace; line-height:1.6;'>" + codeSnippet + "</pre>");
     });
-
-    document.getElementsByClassName("close-code")[0].addEventListener("click", function() {
-      document.getElementById("codeModal").style.display = "none";
+  
+    document.querySelectorAll(".image-gallery img").forEach(function(img) {
+      img.addEventListener("click", function() {
+        openModal("<img src='" + this.src + "' style='width:100%; height:100vh; object-fit:contain; display:block; margin:0 auto;' />");
+      });
     });
-
+  
+    closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
     window.addEventListener("click", function(event) {
-      if (event.target == document.getElementById("codeModal")) {
-        document.getElementById("codeModal").style.display = "none";
+      if (event.target === modal) {
+        modal.style.display = "none";
       }
     });
   </script>
