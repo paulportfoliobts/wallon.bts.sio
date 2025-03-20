@@ -160,6 +160,34 @@
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       }
     }
+    
+    /* Fullscreen modal styles (fonctionnalité en 1 seul bloc de code) */
+    #modalContainer {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #modalContainer img {
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    #modalContainer .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -187,7 +215,6 @@
         <div class="highlight-content">
           <p> <strong>Matériel :</strong></p>
           <img src="https://paulportfoliobts.github.io/wallon.bts.sio/3.5.png" alt="Matériel serveur" style="max-width: 60%; height: auto; margin-bottom: 0.8rem; display: block; margin-left: auto; margin-right: auto;">
-
           <p> <strong>Objectifs :</strong> Remplacer des composants défaillants avant revente du matériel.</p>
         </div>
         <div class="image-gallery">
@@ -203,5 +230,38 @@
       </a>
     </div>
   </main>
+
+  <!-- Fullscreen Modal -->
+  <div id="modalContainer">
+    <span class="close">&times;</span>
+    <img alt="Fullscreen Image">
+  </div>
+
+  <!-- Script pour modal en un seul bloc de code -->
+  <script>
+    (function() {
+      const modal = document.getElementById('modalContainer');
+      const modalImg = modal.querySelector('img');
+      const closeBtn = modal.querySelector('.close');
+      // Appliquer l'effet plein écran à toutes les images hors modal
+      document.querySelectorAll('img').forEach(img => {
+        if (img.closest('#modalContainer')) return;
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+          modal.style.display = 'flex';
+          modalImg.src = this.src;
+        });
+      });
+      // Fermeture du modal (à la croix ou en cliquant à l'extérieur de l'image)
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
