@@ -1,0 +1,79 @@
+{
+  "Dhcp4": {
+    "interfaces-config": {
+      "interfaces": ["enp0s3"]
+    },
+    "lease-database": {
+      "type": "memfile",
+      "lfc-interval": 3600
+    },
+    "valid-lifetime": 600,
+    "renew-timer": 300,
+    "rebind-timer": 525,
+    "subnet4": [
+      {
+        "subnet": "172.22.56.0/21",
+        "pools": [
+          {
+            "pool": "172.22.56.1-172.22.63.253"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.22.63.254"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "172.22.48.1"
+          },
+          {
+            "name": "domain-name",
+            "data": "interne.bre.gsb.sio"
+          }
+        ]
+      },
+      {
+        "subnet": "172.22.48.16/28",
+        "pools": [
+          {
+            "pool": "172.22.48.17-172.22.48.29"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.22.48.30"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "172.22.48.1"
+          },
+          {
+            "name": "domain-name",
+            "data": "interne.bre.gsb.sio"
+          }
+        ]
+      },
+      {
+        "subnet": "172.22.48.48/28",
+        "pools": [
+          {
+            "pool": "172.22.48.50-172.22.48.61"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.22.48.62"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "172.20.255.254"
+          }
+        ]
+       }
+
+    ]
+  }
+}
