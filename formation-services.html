@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
+    /* Base & Variables */
     :root {
       --primary: #2c3e50;
       --light: #ecf0f1;
@@ -32,6 +33,7 @@
       display: flex;
       flex-direction: column;
     }
+    /* Navigation */
     .nav {
       background: var(--primary);
       padding: 0.8rem 2rem;
@@ -54,6 +56,7 @@
     .nav-link:hover, .nav-link.active {
       color: var(--accent);
     }
+    /* Company Section */
     .company-section {
       flex-grow: 1;
       display: flex;
@@ -69,6 +72,7 @@
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       overflow-y: auto;
     }
+    /* Highlight Content & New Text */
     .highlight-content {
       background: #f8f9fa;
       padding: 1rem;
@@ -76,9 +80,12 @@
       margin-bottom: 1rem;
       overflow-y: auto;
     }
-    .highlight-content p, .highlight-content ul, .highlight-content ol {
+    .highlight-content p,
+    .highlight-content ul,
+    .highlight-content ol {
       margin-bottom: 0.8rem;
     }
+    /* Back Button */
     .back-button {
       display: inline-flex;
       align-items: center;
@@ -94,7 +101,7 @@
     .back-button:hover {
       background: var(--accent);
     }
-
+    /* Responsive */
     @media (max-width: 767px) {
       .company-section {
         flex-direction: column;
@@ -103,17 +110,6 @@
       .nav-link {
         font-size: 0.8rem;
         padding: 0.2rem 0.5rem;
-      }
-    }
-    @media (min-width: 768px) {
-      .company-section {
-        display: flex;
-        align-items: stretch;
-      }
-      .company-card {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
       }
     }
     @media (min-width: 768px) {
@@ -133,32 +129,128 @@
         max-width: 400px;
         align-self: center;
       }
+    }
+    /* Image Gallery – Slightly Bigger */
+    .image-gallery img {
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    @media (min-width: 768px) {
       .image-gallery img {
-        max-width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-      }
-      .image-gallery img:hover {
-        transform: scale(1.05);
+        height: 170px;
       }
     }
     @media (max-width: 767px) {
-      .image-gallery {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
-        margin-top: 1rem;
-      }
       .image-gallery img {
-        max-width: 100%;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        height: 150px;
       }
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    /* Code Modal */
+    .code-modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .code-modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    .close-code {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close-code:hover,
+    .close-code:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /* Fullscreen Overlay & Controls */
+    .fullscreen-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .fullscreen-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border: 2px solid white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .close-button:hover {
+      background: rgba(255, 0, 0, 0.7);
+      transform: scale(1.1);
+    }
+    .zoom-controls {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .zoom-btn {
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 20px;
+      user-select: none;
+    }
+    .zoom-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -185,19 +277,16 @@
       <h2>🌐 Mise en place du service Kea DHCP</h2>
       <div class="content-wrapper">
         <div class="highlight-content">
+          <p>🌐 Mise en place du service Kea DHCP</p>
           <p>📡 Définition DHCP : Le protocole DHCP permet d'attribuer automatiquement des adresses IP et autres paramètres réseau aux appareils se connectant à un réseau, évitant ainsi la configuration manuelle.</p>
-          
           <p>🔧 Définition Kea : Kea est un service DHCP open-source et moderne, remplaçant ISC DHCP, conçu pour gérer dynamiquement les adresses IP.</p>
-
           <p>🚀 Comment : Installé sur une VM Ubuntu, configuré directement avec Kea via ses fichiers de configuration JSON pour définir plages IP et baux dynamiques.</p>
-
           <p>🎯 Pourquoi : Automatise l'attribution des IP dans un réseau, permettant à des postes clients d'en obtenir automatiquement</p>
+          <p id="configuration-item" style="cursor: pointer; color: var(--accent);">Configuration</p>
         </div>
         <div class="image-gallery">
-          <img src="https://paulportfoliobts.github.io/wallon.bts.sio/2.1.png" alt="Image 1">
-          <img src="https://paulportfoliobts.github.io/wallon.bts.sio/2.2.png" alt="Image 2">
-          <img src="https://paulportfoliobts.github.io/wallon.bts.sio/2.3.png" alt="Image 3">
-          <img src="https://paulportfoliobts.github.io/wallon.bts.sio/2.4.png" alt="Image 4">
+          <img src="https://paulportfoliobts.github.io/wallon.bts.sio/dhcp1.png" alt="DHCP 1">
+          <img src="https://paulportfoliobts.github.io/wallon.bts.sio/dhcp2.png" alt="DHCP 2">
         </div>
       </div>
       <a href="organisation.html" class="back-button">
@@ -206,5 +295,203 @@
       </a>
     </div>
   </main>
+
+  <div id="codeModal" class="code-modal">
+    <span class="close-code">&times;</span>
+    <pre id="codeContent" style="background: #000; color: #fff; padding: 1.5rem; border: 2px solid #23d5ab; border-radius: 8px; max-height: 80vh; overflow: auto; white-space: pre-wrap; font-size: 1rem; font-family: 'Courier New', monospace; line-height: 1.6; box-shadow: 0 4px 10px rgba(255,255,255,0.3);">
+{
+  "Dhcp4": {
+    "interfaces-config": {
+      "interfaces": ["enp0s3"]
+    },
+    "lease-database": {
+      "type": "memfile",
+      "lfc-interval": 3600
+    },
+    "valid-lifetime": 600,
+    "renew-timer": 300,
+    "rebind-timer": 525,
+    "subnet4": [
+      {
+        "subnet": "172.22.56.0/21",
+        "pools": [
+          {
+            "pool": "172.22.56.1-172.22.63.253"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.22.63.254"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "172.22.48.1"
+          },
+          {
+            "name": "domain-name",
+            "data": "interne.bre.gsb.sio"
+          }
+        ]
+      },
+      {
+        "subnet": "172.22.48.16/28",
+        "pools": [
+          {
+            "pool": "172.22.48.17-172.22.48.29"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.22.48.30"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "172.22.48.1"
+          },
+          {
+            "name": "domain-name",
+            "data": "interne.bre.gsb.sio"
+          }
+        ]
+      },
+      {
+        "subnet": "172.22.48.48/28",
+        "pools": [
+          {
+            "pool": "172.22.48.50-172.22.48.61"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.22.48.62"
+          },
+          {
+            "name": "domain-name-servers",
+            "data": "172.20.255.254"
+          }
+        ]
+      }
+    ]
+  }
+}
+    </pre>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Create fullscreen overlay
+      const overlay = document.createElement('div');
+      overlay.className = 'fullscreen-overlay';
+      
+      const fullscreenImg = document.createElement('img');
+      fullscreenImg.className = 'fullscreen-image';
+      
+      const closeButton = document.createElement('div');
+      closeButton.className = 'close-button';
+      closeButton.innerHTML = '&times;';
+      
+      // Add zoom controls
+      const zoomControls = document.createElement('div');
+      zoomControls.className = 'zoom-controls';
+      
+      const zoomIn = document.createElement('div');
+      zoomIn.className = 'zoom-btn zoom-in';
+      zoomIn.innerHTML = '+';
+      
+      const zoomOut = document.createElement('div');
+      zoomOut.className = 'zoom-btn zoom-out';
+      zoomOut.innerHTML = '-';
+      
+      const zoomReset = document.createElement('div');
+      zoomReset.className = 'zoom-btn zoom-reset';
+      zoomReset.innerHTML = '↺';
+      
+      zoomControls.appendChild(zoomIn);
+      zoomControls.appendChild(zoomOut);
+      zoomControls.appendChild(zoomReset);
+      
+      overlay.appendChild(fullscreenImg);
+      overlay.appendChild(closeButton);
+      overlay.appendChild(zoomControls);
+      document.body.appendChild(overlay);
+      
+      // Track zoom level
+      let currentZoom = 1;
+      
+      // Get all images to trigger fullscreen overlay
+      const images = document.querySelectorAll('.main-image, .image-gallery img');
+      
+      images.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', () => {
+          fullscreenImg.src = img.src;
+          overlay.style.display = 'flex';
+          document.body.style.overflow = 'hidden'; // Prevent scrolling
+          currentZoom = 1;
+          fullscreenImg.style.transform = `scale(${currentZoom})`;
+        });
+      });
+      
+      // Zoom functionality
+      zoomIn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentZoom += 0.2;
+        fullscreenImg.style.transform = `scale(${currentZoom})`;
+      });
+      
+      zoomOut.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentZoom = Math.max(0.5, currentZoom - 0.2);
+        fullscreenImg.style.transform = `scale(${currentZoom})`;
+      });
+      
+      zoomReset.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentZoom = 1;
+        fullscreenImg.style.transform = `scale(${currentZoom})`;
+      });
+      
+      // Close overlay when clicking outside the image
+      [overlay, closeButton].forEach(element => {
+        element.addEventListener('click', (e) => {
+          if (e.target !== fullscreenImg) {
+            overlay.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+          }
+        });
+      });
+      
+      // Prevent closing when clicking on the image itself
+      fullscreenImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      
+      // Close on Esc key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.style.display === 'flex') {
+          overlay.style.display = 'none';
+          document.body.style.overflow = ''; // Restore scrolling
+        }
+      });
+    });
+    
+    // Modal for configuration code
+    document.getElementById("configuration-item").addEventListener("click", function() {
+      document.getElementById("codeModal").style.display = "block";
+    });
+    
+    document.getElementsByClassName("close-code")[0].addEventListener("click", function() {
+      document.getElementById("codeModal").style.display = "none";
+    });
+    
+    window.addEventListener("click", function(event) {
+      if (event.target == document.getElementById("codeModal")) {
+        document.getElementById("codeModal").style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
