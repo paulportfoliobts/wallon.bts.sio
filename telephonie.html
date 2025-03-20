@@ -179,6 +179,47 @@
           justify-content: center;
         }
       }
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        padding-top: 50px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+
+      .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: #bbb;
+      }
+
+      @media (max-width: 700px) {
+        .modal-content {
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
@@ -224,10 +265,10 @@
             </div>
             
             <div class="mission-images">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.1.png" alt="Image 1" onclick="openModal(this)">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.3.png" alt="Image 2" onclick="openModal(this)">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.4.png" alt="Image 3" onclick="openModal(this)">
-              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.2.png" alt="Image 4" onclick="openModal(this)">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.1.png" alt="Image 1">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.3.png" alt="Image 2">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.4.png" alt="Image 3">
+              <img src="https://paulportfoliobts.github.io/wallon.bts.sio/4.2.png" alt="Image 4">
             </div>
           </div>
         </div>
@@ -239,26 +280,43 @@
       </div>
     </main>
 
-    <!-- Add image modal -->
-    <div id="imageModal" class="modal">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img class="modal-content" id="expandedImg">
-    </div>
-
     <script>
-      function openModal(img) {
-        var modal = document.getElementById("imageModal");
-        var modalImg = document.getElementById("expandedImg");
-        modal.style.display = "block";
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-      }
-
-      function closeModal() {
-        var modal = document.getElementById("imageModal");
-        modal.style.display = "none";
-      }
+      (function() {
+        // Create a persistent modal element for full‐screen image display
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.display = 'none';
+  
+        const closeBtn = document.createElement('span');
+        closeBtn.className = 'close';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.addEventListener('click', function() {
+          modal.style.display = 'none';
+        });
+  
+        const modalImg = document.createElement('img');
+        modalImg.className = 'modal-content';
+  
+        modal.appendChild(closeBtn);
+        modal.appendChild(modalImg);
+        document.body.appendChild(modal);
+  
+        // Add click event listener to all images within .mission-images
+        document.querySelectorAll('.mission-images img').forEach(function(img) {
+          img.addEventListener('click', function() {
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            modal.style.display = 'block';
+          });
+        });
+  
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.style.display = 'none';
+          }
+        });
+      })();
     </script>
-
   </body>
 </html>
