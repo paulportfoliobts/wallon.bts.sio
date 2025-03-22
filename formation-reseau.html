@@ -94,6 +94,39 @@
       letter-spacing: 0.3px;
       animation: fadeIn 0.8s ease-out both;
     }
+    .zabbix-tutorial {
+      margin-top: 2rem;
+    }
+    .tutorial-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .step-card {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      gap: 1rem;
+    }
+    .step-number {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .step-content {
+      flex-grow: 1;
+    }
+    .step-content h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .step-content p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+    }
     .back-button {
       display: inline-flex;
       align-items: center;
@@ -251,6 +284,47 @@
           <p>📡 La supervision réseau consiste à surveiller en continu l’état et les performances des équipements et services informatiques, garantissant ainsi une fiabilité optimale et une réaction rapide face aux imprévus.</p>
           <p>📌 Contexte : Dans le réseau dont j'assure la gestion, 9 serveurs distincts et 2 routeurs pare-feu sont en service, rendant indispensable l’implémentation d’un système de surveillance moderne et efficace.</p>
           <p>🎯 Objectif : Ce dispositif vise à identifier promptement les incidents tout en offrant une vision claire de l’infrastructure pour permettre des interventions ciblées et efficientes.</p>
+          
+          <div class="zabbix-tutorial">
+            <h3>✨ Guide d'implémentation de Zabbix : La Supervision Simplifiée</h3>
+            <div class="tutorial-steps">
+              <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Installation du serveur Zabbix</h4>
+                  <p>Déploiement du serveur Zabbix sur une machine Ubuntu avec les packages officiels</p>
+                </div>
+              </div>
+              <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Configuration de la base de données</h4>
+                  <p>Création d'une BDD MySQL dédiée avec les privilèges nécessaires pour Zabbix</p>
+                </div>
+              </div>
+              <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Installation de Zabbix Agent2</h4>
+                  <p>Déploiement de l'agent sur le serveur Windows AD pour collecter les métriques</p>
+                </div>
+              </div>
+              <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h4>Ajout d'hôtes à surveiller</h4>
+                  <p>Configuration de l'hôte Windows AD dans l'interface Zabbix avec les templates appropriés</p>
+                </div>
+              </div>
+              <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <h4>Utilisation du tableau de bord</h4>
+                  <p>Configuration des écrans personnalisés pour visualiser les métriques critiques</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="image-gallery">
           <img src="https://paulportfoliobts.github.io/wallon.bts.sio/zaba.png" alt="Image Zabbix 1">
@@ -291,6 +365,25 @@
       // Fermer le modal en cliquant sur l'overlay
       modal.addEventListener('click', () => {
         modal.classList.remove('open');
+      });
+
+      // Step cards animation
+      const stepCards = document.querySelectorAll('.step-card');
+      
+      stepCards.forEach((card, index) => {
+        // Add staggered animation delay
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.style.opacity = "0";
+        card.style.animation = "fadeIn 0.5s ease forwards";
+        
+        // Add hover effect listeners
+        card.addEventListener('mouseenter', () => {
+          card.querySelector('.step-number').style.transform = "scale(1.1)";
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.querySelector('.step-number').style.transform = "scale(1)";
+        });
       });
     });
   </script>
