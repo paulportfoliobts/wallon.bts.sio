@@ -283,6 +283,7 @@
           <p>🚀 Implémentation : Installation sur une machine virtuelle Ubuntu, configuration via fichiers Kea pour définir précisément les plages d'adressage et les paramètres de bail.</p>
           <p>🎯 Objectif : Centraliser l'allocation d'adresses IP, garantissant une attribution cohérente et sans intervention manuelle sur le réseau.</p>
           <p id="configuration-item" style="cursor: pointer; color: var(--accent);">Configuration</p>
+          <img src="https://paulportfoliobts.github.io/wallon.bts.sio/schema.png" alt="Schema" style="max-width: 100%; margin-top: 1rem;">
         </div>
         <div class="image-gallery">
           <img src="https://paulportfoliobts.github.io/wallon.bts.sio/dhcp1.png" alt="DHCP 1">
@@ -423,7 +424,7 @@
       let currentZoom = 1;
       
       // Get all images to trigger fullscreen overlay
-      const images = document.querySelectorAll('.main-image, .image-gallery img');
+      const images = document.querySelectorAll('.main-image, .image-gallery img, .highlight-content img');
       
       images.forEach(img => {
         img.style.cursor = 'pointer';
