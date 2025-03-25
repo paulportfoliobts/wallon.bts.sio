@@ -256,28 +256,39 @@
     const modalContent = document.getElementById('modalContent');
     const closeModal = document.getElementById('closeModal');
   
-    const codeSnippet = `sysname Sw1
+    const codeSnippet = `# Configuration de base
+sysname Sw1
 
+# Configuration de l'horloge
 clock timezone GMT add 01:00:00
 clock summer-time GMT repeating 00:00:00 2025 March last Sunday 00:00:00 2025 October last Sunday 01:00:00
 
+# Configuration DHCP Relay
 dhcp relay server-group 5 ip 192.168.1.1
 dhcp relay server-detect
 
+# Configuration IRF (Intelligent Resilient Framework)
+# IRF permet d'empiler plusieurs switches pour les gérer comme une seule unité logique.
 irf mac-address persistent timer
 irf auto-update enable
 undo irf link-delay
 
+
+# Configuration du domaine 
 domain default enable sil-dgfip
 undo ip http enable
 password-recovery enable
+# Recupere le mdp en cas de perte
 
+# Configuration des VPN instances 
 ip vpn-instance TPE
 route-distinguisher 1:301
 
 ip vpn-instance VRF-TOIP
 route-distinguisher 1300:1305
+# Configure des instances VPN (Virtual Routing and Forwarding) pour isoler les tables de routage.
 
+# Configuration des VLANs 
 vlan 26
 description data-26
 name data-26
@@ -286,6 +297,7 @@ vlan 90
 description admin-90
 name admin-90
 
+# Configuration RADIUS 
 radius scheme dgfip_sil
 server-type extended
 primary authentication 192.168.1.1
@@ -297,23 +309,22 @@ user-name-format without-domain
 radius scheme sys
 user-name-format without-domain
 
+# Configure les serveurs RADIUS pour l'authentification des utilisateur
 domain dgfip_sil
 authentication login radius-scheme dgfip_sil local
 authorization login radius-scheme dgfip_sil local
 accounting login radius-scheme dgfip_sil local
+ 
 
-domain system
-access-limit disable
-state active
-idle-cut disable
-self-service-url disable
 
+# Configuration du pool DHCP étendu pour un VLAN spécifique 
 dhcp server ip-pool tpe26 extended
 network ip range 192.168.1.1 192.168.1.110
 network mask 255.255.255.224
 gateway-list 192.168.1.1
 dns-list 8.8.8.8 8.8.2.2
 
+# Configuration des groupes d'utilisateurs et permissions  
 user-group system
 group-attribute allow-guest
 
@@ -322,46 +333,13 @@ password cipher ...
 authorization-attribute level 3
 service-type ssh terminal
 
+# Configuration Spanning Tree Protocol
 stp mode rstp
 stp instance 0 root primary
 stp enable
+# Active Rapid Spanning Tree Protocol pour éviter les boucles réseau.
 
-cwmp
-undo cwmp enable
-
-interface Bridge-Aggregation1
-description agregat linux/samba
-port access vlan 3000
-stp edged-port enable
-
-interface Vlan-interface3
-ip address 192.168.1.1 255.255.255.0
-dhcp select relay
-dhcp relay server-select 5
-
-interface Ethernet1/0/4
-port link-mode bridge
-description agregat linux/ubuntu 2/2
-port access vlan 4
-port link-aggregation group 1
-
-ip route-static 0.0.0.0 0.0.0.0 192.168.1.1
-
-snmp-agent
-snmp-agent local-engineid ...
-snmp-agent community write disi
-snmp-agent community read lan
-
-dhcp enable
-
-ntp-service unicast-server 192.168.1.1
-
-ssh server enable
-ssh user admin service-type all authentication-type password
-
-user-interface vty 0 8
-authentication-mode scheme
-protocol inbound ssh`;
+interface Bridge-Aggregation1 description agregat linux port access vlan3000`;
   
     function openModal(content) {
       modalContent.innerHTML = content;
