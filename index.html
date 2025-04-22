@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Erreur 404 - Portfolio indisponible</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cette page indique que le dépôt du portfolio a été supprimé suite à une demande de confidentialité de l'entreprise DISI.">
+  <!-- Tailwind CSS via jsdelivr -->
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.3/lib/index.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Heroicons via jsdelivr for an illustrative icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    html, body {
+      background-color: #f7fafc;
+      min-height: 100%;
+      width: 100%;
+    }
+    @media print {
+      html, body {
+        background: #fff !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="flex flex-col justify-center items-center min-h-screen px-4 py-8 bg-gray-100 text-gray-900">
+  <main class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center">
+    <div class="mb-8 flex flex-col items-center">
+      <span class="text-7xl text-red-500 mb-4">
+        <i class="fa-solid fa-lock"></i>
+      </span>
+      <h1 class="text-5xl font-extrabold text-gray-800 mb-2">Erreur 404</h1>
+      <p class="text-lg text-gray-600 mb-1">Portfolio indisponible</p>
+    </div>
+    <section class="w-full">
+      <p class="text-gray-700 text-center text-base mb-6">
+        Le dépôt du portfolio que vous tentez de consulter a été supprimé conformément à une demande de confidentialité émise par l'entreprise <span class="font-semibold text-blue-700">DISI</span>.
+      </p>
+      <p class="text-gray-700 text-center text-base">
+        Si vous avez besoin d'accéder à ce portfolio ou souhaitez obtenir des informations complémentaires, veuillez prendre contact avec les responsables ayant mené l'entretien associé.
+      </p>
+    </section>
+    <div class="mt-8 w-full flex justify-center">
+      <a href="/" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors text-base no-print">
+        <i class="fa-solid fa-arrow-left mr-2"></i>
+        Retour à l'accueil
+      </a>
+    </div>
+  </main>
+  <footer class="mt-8 text-center text-gray-400 text-xs">
+    &copy; 2024 DISI. Tous droits réservés.
+  </footer>
+</body>
+</html>
+
