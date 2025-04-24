@@ -1,0 +1,436 @@
+<html>
+  <head>
+    <base href="">
+    <meta charset="UTF-8" />
+    <title>Infrastructure IT - Portfolio de Paul Peudecoeur</title>
+    <link rel="icon" type="image/png" href="pp.png" />
+    <link rel="apple-touch-icon" href="pp.png" />
+    <link rel="shortcut icon" type="image/png" href="pp.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* Reset & Base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --primary: #2c3e50;
+        --light: #ecf0f1;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--primary);
+        background-color: var(--light);
+      }
+      /* Navigation */
+      .nav {
+        background: var(--primary);
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+      .nav-list {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #23d5ab;
+        transform: translateY(-2px);
+      }
+      .nav-link.active {
+        color: #23d5ab;
+        font-weight: 600;
+      }
+      /* Company Section & Card */
+      .company-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 8rem 2rem 4rem;
+      }
+      .company-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(44, 62, 80, 0.1);
+      }
+      .company-card:hover {
+        transform: translateY(-5px);
+      }
+      .company-card h2 {
+        color: #23d5ab;
+        margin-bottom: 1.5rem;
+        font-size: 2.2rem;
+        position: relative;
+      }
+      .company-card h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary);
+      }
+      .company-card ul {
+        margin: 1.5rem 0;
+        padding-left: 1.5rem;
+      }
+      .company-card li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+      .company-card li::before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        color: #23d5ab;
+        font-weight: bold;
+      }
+      /* Highlight & Intro */
+      .highlight-content {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 2rem 0;
+      }
+      .highlight-content h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+      }
+      .intro-text {
+        font-size: 1.1rem;
+        color: #7f8c8d;
+        margin-bottom: 2rem;
+      }
+      /* Back Button */
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background: var(--primary);
+        color: white !important;
+        border-radius: 30px;
+        text-decoration: none !important;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+        box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+        border: 2px solid transparent;
+      }
+      .back-button:hover {
+        background: #23d5ab;
+        transform: translateX(5px);
+        box-shadow: 0 6px 20px rgba(35, 213, 171, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .back-button i {
+        transition: transform 0.3s ease;
+      }
+      .back-button:hover i {
+        transform: translateX(-3px);
+      }
+      /* Mission Section */
+      .mission-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .mission-text {
+        flex: 1;
+      }
+      .mission-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        max-width: 300px;
+      }
+      .mission-images img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .image-container {
+        width: 180px;
+        height: 180px;
+      }
+      .image-container svg {
+        width: 100%;
+        height: 100%;
+      }
+      .full-width-image {
+        width: 100%;
+      }
+      .full-width-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      @media (max-width: 768px) {
+        .mission-content {
+          flex-direction: column;
+        }
+        .mission-images {
+          max-width: 100%;
+          justify-content: center;
+        }
+      }
+      /* Fullscreen Overlay & Controls */
+      .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .fullscreen-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border: 2px solid white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease;
+        cursor: default;
+      }
+      .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.5);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+      .close-button:hover {
+        background: rgba(255, 0, 0, 0.7);
+        transform: scale(1.1);
+      }
+      .zoom-controls {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      .zoom-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 20px;
+        user-select: none;
+      }
+      .zoom-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+        transform: scale(1.1);
+      }
+      /* Image Gallery (if present) */
+      .image-gallery img {
+        max-width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      @media (max-width: 767px) {
+        .image-gallery img {
+          height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link active">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a href="profil.html" class="nav-link">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a href="organisation.html" class="nav-link">Organisation</a>
+        </li>
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="company-section">
+      <div class="company-card">
+        <div class="highlight-content">
+          <div class="mission-content">
+            <div class="mission-text">
+              <h3>Remplacement de switches CDR HP 3600 par HP 5140</h3>
+              <h4>Pourquoi ?</h4>
+              <ul>
+                <li>Moderniser l’infrastructure réseau pour améliorer les performances</li>
+                <li>Standardiser le matériel selon les recommandations de la DGFIP
+                  <div class="full-width-image">
+                    <img src="https://paulportfoliobts.github.io/wallon.bts.sio/5.1.png" class="mission-image">
+                  </div>
+                </li>
+              </ul>
+              <h4>Comment ?</h4>
+              <ul>
+                <li>Démontage des HP 3600 et installation des HP 5140</li>
+                <li>Tests du bon fonctionnement</li>
+              </ul>
+              <h4>Tests à effectuer 🧪</h4>
+              <ul>
+                <li>🌐 Vérification du fonctionnement des bornes wifi</li>
+                <li>📞 Test d'appels interne-externe</li>
+                <li>💳 Relancement des TPE</li>
+                <li>🖥️ Ping des serveurs du site</li>
+              </ul>
+            </div>
+            <div class="mission-images">
+              <div class="image-container">
+                <img src="https://paulportfoliobts.github.io/wallon.bts.sio/5.2.png" class="mission-image">
+              </div>
+              <div class="image-container">
+                <img src="https://paulportfoliobts.github.io/wallon.bts.sio/5.3.png" class="mission-image">
+              </div>
+              <div class="image-container">
+                <img src="https://paulportfoliobts.github.io/wallon.bts.sio/5.4.png" class="mission-image">
+              </div>
+              <div class="image-container">
+                <img src="https://paulportfoliobts.github.io/wallon.bts.sio/5.5.png" class="mission-image">
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="organisation.html" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+          Retour au portfolio
+        </a>
+      </div>
+    </main>
+
+    <!-- Fullscreen Overlay Block -->
+    <div class="fullscreen-overlay">
+      <img class="fullscreen-image" alt="Full Screen">
+      <div class="close-button">&times;</div>
+      <div class="zoom-controls">
+        <div class="zoom-btn zoom-in">+</div>
+        <div class="zoom-btn zoom-out">-</div>
+        <div class="zoom-btn zoom-reset">↺</div>
+      </div>
+    </div>
+
+    <script type="module">
+      document.addEventListener('DOMContentLoaded', () => {
+        const overlay = document.querySelector('.fullscreen-overlay');
+        const fullscreenImg = overlay.querySelector('.fullscreen-image');
+        const closeButton = overlay.querySelector('.close-button');
+        const zoomIn = overlay.querySelector('.zoom-in');
+        const zoomOut = overlay.querySelector('.zoom-out');
+        const zoomReset = overlay.querySelector('.zoom-reset');
+
+        let currentZoom = 1;
+
+        function openFullscreen(src) {
+          fullscreenImg.src = src;
+          overlay.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          currentZoom = 1;
+          fullscreenImg.style.transform = `scale(${currentZoom})`;
+        }
+
+        const images = document.querySelectorAll('.mission-image, .image-gallery img, .main-image');
+        images.forEach(img => {
+          img.style.cursor = 'pointer';
+          img.addEventListener('click', () => {
+            openFullscreen(img.src);
+          });
+        });
+
+        zoomIn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentZoom += 0.2;
+          fullscreenImg.style.transform = `scale(${currentZoom})`;
+        });
+
+        zoomOut.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentZoom = Math.max(0.5, currentZoom - 0.2);
+          fullscreenImg.style.transform = `scale(${currentZoom})`;
+        });
+
+        zoomReset.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentZoom = 1;
+          fullscreenImg.style.transform = `scale(${currentZoom})`;
+        });
+
+        [overlay, closeButton].forEach(el => {
+          el.addEventListener('click', (e) => {
+            if(e.target !== fullscreenImg) {
+              overlay.style.display = 'none';
+              document.body.style.overflow = '';
+            }
+          });
+        });
+
+        fullscreenImg.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if(e.key === 'Escape' && overlay.style.display === 'flex') {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
